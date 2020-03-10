@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">汽車打卡</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_gmap">gmap</string>
+    <string name="title_activity_mymap">Map</string>
+    <string name="title_activity_mymap2">Map</string>
+</resources>

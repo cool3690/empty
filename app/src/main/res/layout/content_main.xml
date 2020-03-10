@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/acc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="46dp"
+            android:ems="10"
+            android:hint="輸入車牌號碼 範例:VG-233 ">
+
+        </EditText>
+
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/acc"
+            android:layout_alignRight="@+id/acc"
+            android:layout_marginTop="43dp"
+            android:text="簽到"
+            android:textSize="25sp"/>
+        <Button
+            android:id="@+id/gmap"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:layout_marginTop="43dp"
+            android:text="地圖" />
+
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
