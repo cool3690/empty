@@ -34,6 +34,7 @@
             android:layout_marginTop="43dp"
             android:text="簽到"
             android:textSize="25sp"/>
+        <!--
         <Button
             android:id="@+id/gmap"
             android:layout_width="fill_parent"
@@ -41,7 +42,7 @@
             android:layout_below="@+id/login"
             android:layout_marginTop="43dp"
             android:text="地圖" />
-
+-->
 
 
     </RelativeLayout>

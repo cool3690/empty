@@ -43,7 +43,8 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
-    private Button login,gmap ;
+    private Button login;
+    //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
     private Write write = new Write(MainActivity.this);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void findViews() {
          login = (Button)findViewById(R.id.login);
-        gmap = (Button)findViewById(R.id.gmap);
+       // gmap = (Button)findViewById(R.id.gmap);
         acc=(EditText)findViewById(R.id.acc);
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         String name_str=remdname.getString("acc", "");
@@ -135,8 +136,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         login.setOnClickListener(getDBRecord);
-        gmap.setOnClickListener(getmap);
+       // gmap.setOnClickListener(getmap);
     }
+    /*
     private Button.OnClickListener getmap = new Button.OnClickListener() {
         public void onClick(View v) {
             Button btn = (Button)v;
@@ -174,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+     */
     private boolean haveInternet()
     {
         boolean result = false;
