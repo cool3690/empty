@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,11 +44,17 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
-    private Button login;
+    private Button login,c1;
     //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
     private Write write = new Write(MainActivity.this);
+    //date
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String dateStr = sdf.format(date);
+    //time
+    Date time =new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,18 +96,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void findViews() {
          login = (Button)findViewById(R.id.login);
+        c1 = (Button)findViewById(R.id.c1);
        // gmap = (Button)findViewById(R.id.gmap);
         acc=(EditText)findViewById(R.id.acc);
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         String name_str=remdname.getString("acc", "");
         acc.setText(name_str);
-        //date
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String dateStr = sdf.format(date);
-        //time
-        Date time =new Date();
-        SimpleDateFormat t=new SimpleDateFormat("HHmm");
+        SimpleDateFormat t=new SimpleDateFormat("HH:mm");
         String timestr=t.format(time);
         write.WriteFileExample(name_str+"/"+dateStr+"/"+timestr);
         if(!gpsIsOpen()){mytoast("請開GPS和網路");}
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         login.setOnClickListener(getDBRecord);
+        c1.setOnClickListener(c1btn);
        // gmap.setOnClickListener(getmap);
     }
     /*
@@ -190,11 +193,40 @@ public class MainActivity extends AppCompatActivity {
               result =false;
         return result;
     }
+    private Button.OnClickListener c1btn = new Button.OnClickListener() {
+        public void onClick(View v) {
+
+            mLocation = getLocation();
+                if(!gpsIsOpen()){
+                    write.WriteFileExample("GPS not open !"+dateStr);
+                    return;
+                }
+                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo info=connManager.getActiveNetworkInfo();
+                if (info == null || !info.isConnected() ||!info.isAvailable())
+                {mytoast(dateStr+"請開網路:");
+                    write.WriteFileExample("請開網路");
+                    return;
+                }
+
+                else if(mLocation != null)
+                {
+                    getAddress();
+                }
+
+                else
+                {mytoast("GPS定位中....");}
+                SimpleDateFormat t=new SimpleDateFormat("HH:mm");
+                String timestr=t.format(time);
+                if(!TextUtils.isEmpty(acc.getText().toString())){
+                    dbc1.executeQuery(acc.getText().toString().toUpperCase(),dateStr,timestr,"永豐餘");
+                }
+
+        }
+    };
     private Button.OnClickListener getDBRecord = new Button.OnClickListener() {
         public void onClick(View v) {
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            String dateStr = sdf.format(date);
+
             Button btn = (Button)v;
      if(btn.getId() == R.id.login)
             { mLocation = getLocation();
@@ -216,11 +248,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else
-                    mytoast("GPS定位中....");
-
-
-
-
+                {mytoast("GPS定位中....");}
+                SimpleDateFormat t=new SimpleDateFormat("HH:mm");
+                String timestr=t.format(time);
+                if(!TextUtils.isEmpty(acc.getText().toString())) {
+                    dbc1.executeQuery(acc.getText().toString().toUpperCase(), dateStr, timestr, "全興");
+                }
             }
         }
     };
