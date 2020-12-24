@@ -54,15 +54,15 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String dateStr = sdf.format(date);
     //time
-    Date time =new Date();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViews();
-        setListeners();
+
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
                 .detectDiskWrites()
@@ -74,23 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 .penaltyLog()
                 .penaltyDeath()
                 .build());
+        findViews();
+        setListeners();
 
-/*
-
-
-        FileOutputStream outStream = null;
-        try {
-            outStream = this.openFileOutput("itcast.txt", MODE_PRIVATE);
-
-        } catch (FileNotFoundException e) {}
-
-        try {
-            outStream.write("傳智播客".getBytes());
-            outStream.close();
-        } catch (IOException e) {}
-
-
-*/
 
     }
 
@@ -102,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         String name_str=remdname.getString("acc", "");
         acc.setText(name_str);
+        Date time =new Date();
         SimpleDateFormat t=new SimpleDateFormat("HH:mm");
         String timestr=t.format(time);
         write.WriteFileExample(name_str+"/"+dateStr+"/"+timestr);
@@ -112,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
         {mytoast("請開網路:");
             write.WriteFileExample(dateStr+"請開網路");
         }
+
         mLocation = getLocation();
-        if(mLocation != null)
+       /* if(mLocation != null)
         {
            Intent intent2 = new Intent(MainActivity.this, NickyService.class);
 
@@ -133,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
             startService(intent2);
 
         }
+
+         */
 
     }
 
@@ -201,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     write.WriteFileExample("GPS not open !"+dateStr);
                     return;
                 }
-                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+               ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo info=connManager.getActiveNetworkInfo();
                 if (info == null || !info.isConnected() ||!info.isAvailable())
                 {mytoast(dateStr+"請開網路:");
@@ -216,11 +206,18 @@ public class MainActivity extends AppCompatActivity {
 
                 else
                 {mytoast("GPS定位中....");}
-                SimpleDateFormat t=new SimpleDateFormat("HH:mm");
-                String timestr=t.format(time);
-                if(!TextUtils.isEmpty(acc.getText().toString())){
-                    dbc1.executeQuery(acc.getText().toString().toUpperCase(),dateStr,timestr,"永豐餘");
+
+/* */
+            Date time =new Date();
+            SimpleDateFormat t=new SimpleDateFormat("HH:mm");
+            String timestr=t.format(time);
+
+            String car_num=acc.getText().toString().toUpperCase();
+                if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
+                    dbc1.executeQuery(car_num.toUpperCase(),dateStr,timestr,"永豐餘");
+                    mytoast("簽到:"+dateStr+" "+timestr+" ");
                 }
+                else{mytoast("車牌格式錯誤!");}
 
         }
     };
@@ -249,11 +246,15 @@ public class MainActivity extends AppCompatActivity {
 
                 else
                 {mytoast("GPS定位中....");}
+                Date time =new Date();
                 SimpleDateFormat t=new SimpleDateFormat("HH:mm");
                 String timestr=t.format(time);
-                if(!TextUtils.isEmpty(acc.getText().toString())) {
-                    dbc1.executeQuery(acc.getText().toString().toUpperCase(), dateStr, timestr, "全興");
+                String car_num=acc.getText().toString().toUpperCase();
+                if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
+                    dbc1.executeQuery(car_num.toUpperCase(),dateStr,timestr,"全興");
+                    mytoast("簽到:"+dateStr+" "+timestr+" ");
                 }
+                else{mytoast("車牌格式錯誤!");}
             }
         }
     };
@@ -301,8 +302,14 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private String getAddress() {
+        SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit=remdname.edit();
+        edit.putString("acc", acc.getText().toString());
+        edit.commit();
+
         //Geocoder
         String addr="";
+        /*
         Geocoder gc = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> locationList = gc.getFromLocation(mLocation.getLatitude(), mLocation.getLongitude(), 1);
@@ -310,30 +317,11 @@ public class MainActivity extends AppCompatActivity {
                 Address address = locationList.get(0);
                 addr=address.getAddressLine(0);
 
-                String car_num=acc.getText().toString().toUpperCase();
-                //date
-                Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                String dateStr = sdf.format(date);
-                //time
-                Date time =new Date();
-                SimpleDateFormat t=new SimpleDateFormat("HHmm");
-                String timestr=t.format(time);
-                SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
-                SharedPreferences.Editor edit=remdname.edit();
-                edit.putString("acc", acc.getText().toString());
-                edit.commit();
-                if(car_num.contains("-")){
-                   carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
-                    mytoast("簽到:"+dateStr+" "+timestr+" \n地址:"+addr);
-                    write.WriteFileExample(car_num.toUpperCase()+"/"+dateStr+"/"+timestr+addr);
-                }
-                else{mytoast("車牌格式錯誤!");}
-
-
+                 //  carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
 
             }
         } catch (Exception e) {}
+        */
         return  addr;
     }
 
