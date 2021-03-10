@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">汽車打卡</string>
+    <string name="app_name">影像查詢系統</string>
+    <string name="caard">汽車打卡</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_gmap">gmap</string>
     <string name="title_activity_mymap">Map</string>

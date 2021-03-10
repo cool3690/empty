@@ -24,7 +24,7 @@ public class Carplace extends AppCompatActivity {
     Spinner choose;
     Button back;
     private Menu menu;
-    String course[]= {"KLE-5592" ,"788-UG"," 785-UG ","233-VG","787-VG"};
+    String course[]= {"KLE-5592" ,"788-UG","785-UG ","233-VG","787-VG"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class Carplace extends AppCompatActivity {
 
         myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php");
 
-      myweb.scrollTo(0,800);
+    //  myweb.scrollTo(0,800);
       back.setOnClickListener(backbtn);
 
     }

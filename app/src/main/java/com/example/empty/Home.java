@@ -25,6 +25,7 @@ Button stamp,place,track,real;
         place.setOnClickListener(placebtn);
         track.setOnClickListener(trackbtn);
         real.setOnClickListener(realbtn);
+        real.setVisibility(View.GONE);
     }
     private Button.OnClickListener stampbtn=new Button.OnClickListener(){//打卡
         @Override

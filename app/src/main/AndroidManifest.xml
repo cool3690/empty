@@ -58,11 +58,12 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="車輛打卡"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/caard"
+            android:theme="@style/AppTheme.NoActionBar"
+             />
         <activity
             android:name=".Home"
-            android:label="@string/title_activity_home"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
