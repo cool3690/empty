@@ -16,9 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import org.json.JSONArray;
-
-public class Carplace extends AppCompatActivity {
+public class Cartrack extends AppCompatActivity {
     WebView myweb;
     String account="",passwd="",names="",course_num="";
     Spinner choose;
@@ -28,10 +26,9 @@ public class Carplace extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.carplace);
+        setContentView(R.layout.cartrack);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
                 .detectDiskWrites()
@@ -61,17 +58,17 @@ public class Carplace extends AppCompatActivity {
         //http://211.23.243.109:6060/GetGpsHistoryTrack/100?DeviceId=1906270011&BeginTime=2021~03~10~00~00~00&EndTime=2021~03~10~23~59~59'
 
 
-        myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php");
+        myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php");
 
-      myweb.scrollTo(0,800);
-      back.setOnClickListener(backbtn);
+       // myweb.scrollTo(0,800);
+        back.setOnClickListener(backbtn);
 
     }
     private Button.OnClickListener backbtn=new Button.OnClickListener(){//軌跡
         @Override
         public void onClick(View v) {
             Intent intent=new Intent();
-            intent.setClass(Carplace.this, Home.class);
+            intent.setClass(Cartrack.this, Home.class);
             startActivity(intent);
         }
     };
@@ -79,11 +76,11 @@ public class Carplace extends AppCompatActivity {
         @Override
         public void onItemSelected(AdapterView<?> parent, View v,
                                    int position, long id) {
-           int tmp=position+1;
-            myweb.loadUrl("http://vehicle.chansing.com.tw/car/map"+tmp+".php");
+            int tmp=position+1;
+            myweb.loadUrl("http://vehicle.chansing.com.tw/car/track"+tmp+".php");
 
-          //  myweb.scrollTo(0,1400);
-          //  sel=parent.getSelectedItem().toString();
+            //  myweb.scrollTo(0,1400);
+            //  sel=parent.getSelectedItem().toString();
 
         }
         @Override

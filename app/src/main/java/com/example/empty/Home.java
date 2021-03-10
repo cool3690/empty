@@ -45,7 +45,9 @@ Button stamp,place,track,real;
     private Button.OnClickListener trackbtn=new Button.OnClickListener(){//軌跡
         @Override
         public void onClick(View v) {
-
+            Intent intent=new Intent();
+            intent.setClass(Home.this, Cartrack.class);
+            startActivity(intent);
         }
     };
     private Button.OnClickListener realbtn=new Button.OnClickListener(){//即時影像

@@ -44,7 +44,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
-    private Button login,c1;
+    private Button login,c1,back;
     //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 .build());
         findViews();
         setListeners();
-
+        back=(Button) findViewById(R.id.back);
+        back.setOnClickListener(backbtn);
 
     }
 
@@ -300,7 +301,14 @@ public class MainActivity extends AppCompatActivity {
         public void onProviderEnabled(String provider){}
         public void onStatusChanged(String provider, int status, Bundle extras){}
     };
-
+    private Button.OnClickListener backbtn=new Button.OnClickListener(){//軌跡
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent();
+            intent.setClass(MainActivity.this, Home.class);
+            startActivity(intent);
+        }
+    };
     private String getAddress() {
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit=remdname.edit();

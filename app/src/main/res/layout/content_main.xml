@@ -58,6 +58,12 @@
             android:text="地圖" />
 -->
 
+        <Button
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            android:layout_alignParentBottom="true"
+            android:text="返回" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

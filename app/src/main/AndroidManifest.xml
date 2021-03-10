@@ -19,14 +19,21 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:largeHeap="true"
+
+        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Cartrack"
+            android:label="@string/title_activity_cartrack"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Carplace"
             android:label="@string/title_activity_carplace"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Video"
             android:label="@string/title_activity_video"
