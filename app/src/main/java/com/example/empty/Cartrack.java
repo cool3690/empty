@@ -77,7 +77,7 @@ public class Cartrack extends AppCompatActivity {
         public void onItemSelected(AdapterView<?> parent, View v,
                                    int position, long id) {
             int tmp=position+1;
-            myweb.loadUrl("http://vehicle.chansing.com.tw/car/track"+tmp+".php");
+            myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php?num="+position);
 
             //  myweb.scrollTo(0,1400);
             //  sel=parent.getSelectedItem().toString();

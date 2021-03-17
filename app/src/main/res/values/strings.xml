@@ -17,4 +17,5 @@
     <string name="title_activity_video">即時影像</string>
     <string name="title_activity_carplace">車輛地點</string>
     <string name="title_activity_cartrack">車輛軌跡</string>
+    <string name="title_activity_carplacemuti">所有車輛地點</string>
 </resources>

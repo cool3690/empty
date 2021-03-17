@@ -16,22 +16,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import org.json.JSONArray;
-
-public class Carplace extends AppCompatActivity {
+public class Carplacemuti extends AppCompatActivity {
     WebView myweb;
-    String account="",passwd="",names="",course_num="";
-    Spinner choose;
+
     Button back;
     private Menu menu;
-    String course[]= {"KLE-5592" ,"788-UG","785-UG ","233-VG","787-VG"};
+   // String course[]= {"KLE-5592" ,"788-UG","785-UG ","233-VG","787-VG"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.carplace);
+        setContentView(R.layout.carplacemuti);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
                 .detectDiskWrites()
@@ -44,50 +40,28 @@ public class Carplace extends AppCompatActivity {
                 .penaltyDeath()
                 .build());
 
-        choose=(Spinner)findViewById(R.id.choose);
+
         back=(Button) findViewById(R.id.back);
-        ArrayAdapter<String> choosespn=new ArrayAdapter<String>(this,android.R.layout.
-                simple_spinner_dropdown_item,course);
 
-        choose.setAdapter(choosespn);
-
-        choose.setOnItemSelectedListener(chbtn);
         myweb = (WebView) findViewById(R.id.webview);
 
         myweb.getSettings().setBuiltInZoomControls(true);
         myweb.getSettings().setJavaScriptEnabled(true);
         myweb.setWebViewClient(new WebViewClient());
 
-        myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php");
-      back.setOnClickListener(backbtn);
+        myweb.loadUrl("http://vehicle.chansing.com.tw/car/map2.php");
+        back.setOnClickListener(backbtn);
 
     }
     private Button.OnClickListener backbtn=new Button.OnClickListener(){//軌跡
         @Override
         public void onClick(View v) {
             Intent intent=new Intent();
-            intent.setClass(Carplace.this, Home.class);
+            intent.setClass(Carplacemuti.this, Home.class);
             startActivity(intent);
         }
     };
-    private Spinner.OnItemSelectedListener chbtn= new Spinner.OnItemSelectedListener(){
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View v,
-                                   int position, long id) {
-           int tmp=position+1;
 
-          // dbplace.executeQuery(tmp+"");
-          //  myweb.loadUrl("http://vehicle.chansing.com.tw/car/map"+tmp+".php");
-            myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php?num="+position);
-          //  myweb.scrollTo(0,1400);    http://vehicle.chansing.com.tw/car/map1.php?num=www.google.com
-          //  sel=parent.getSelectedItem().toString();
-
-        }
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-            // TODO Auto-generated method stub
-        }
-    };
     public void onLoadResource(WebView view, String url) {
 
         myweb.scrollTo(0,1400);

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
-Button stamp,place,track,real;
+Button stamp,place,track,real,placemuti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +21,12 @@ Button stamp,place,track,real;
         place=(Button)findViewById(R.id.place);
         track=(Button)findViewById(R.id.track);
         real=(Button)findViewById(R.id.real);
+        placemuti=(Button)findViewById(R.id.placemuti);
         stamp.setOnClickListener(stampbtn);
         place.setOnClickListener(placebtn);
         track.setOnClickListener(trackbtn);
         real.setOnClickListener(realbtn);
+        placemuti.setOnClickListener(placemutibtn);
         real.setVisibility(View.GONE);
     }
     private Button.OnClickListener stampbtn=new Button.OnClickListener(){//打卡
@@ -56,6 +58,14 @@ Button stamp,place,track,real;
         public void onClick(View v) {
             Intent intent=new Intent();
             intent.setClass(Home.this, Video.class);
+            startActivity(intent);
+        }
+    };
+    private Button.OnClickListener placemutibtn=new Button.OnClickListener(){//打卡
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent();
+            intent.setClass(Home.this, Carplacemuti.class);
             startActivity(intent);
         }
     };
