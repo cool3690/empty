@@ -26,9 +26,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Carplacemuti2"
+            android:label="@string/title_activity_carplacemuti2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Carplacemuti"
             android:label="@string/title_activity_carplacemuti"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Cartrack"
             android:label="@string/title_activity_cartrack"

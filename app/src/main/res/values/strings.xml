@@ -18,4 +18,5 @@
     <string name="title_activity_carplace">車輛地點</string>
     <string name="title_activity_cartrack">車輛軌跡</string>
     <string name="title_activity_carplacemuti">所有車輛地點</string>
+    <string name="title_activity_carplacemuti2">所有車輛</string>
 </resources>
