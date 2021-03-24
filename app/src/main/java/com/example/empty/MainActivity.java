@@ -2,6 +2,7 @@ package com.example.empty;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -204,25 +205,89 @@ public class MainActivity extends AppCompatActivity {
                 else if(mLocation != null)
                 {
                     getAddress();
+                    //mytoast(getAddress()+"");
                 }
 
                 else
                 {mytoast("GPS定位中....");}
 
-/* */
+
             Date time =new Date();
             SimpleDateFormat t=new SimpleDateFormat("HH:mm");
             String timestr=t.format(time);
 
             String car_num=acc.getText().toString().toUpperCase();
-                if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
-                    dbc1.executeQuery(car_num.toUpperCase(),dateStr,timestr,"永豐餘");
-                    mytoast("簽到:"+dateStr+" "+timestr+" ");
-                }
-                else{mytoast("車牌格式錯誤!");}
+            /*
+            if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
+                dbc1.executeQuery(car_num ,dateStr,timestr,"永豐餘");
+                mytoast("簽到:"+dateStr+" "+timestr+" \n"+retaddress());
+            }
+            else{mytoast("車牌格式錯誤!");}
+            */
+             new DownloadFileAsync() .execute(car_num, timestr );
+
+
 
         }
     };
+    class DownloadFileAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(final String... params) {
+
+
+            if(!TextUtils.isEmpty(params[0]) &&params[0].contains("-")){
+                dbc1.executeQuery(params[0] ,dateStr,params[1],"永豐餘");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mytoast("簽到:"+dateStr+" "+params[1]+" \n"+retaddress());
+                    }
+                });
+
+            }
+            else{
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mytoast("車牌格式錯誤!");
+                    }
+                });
+            }
+
+            return null;
+        }
+
+        protected void onProgressUpdate(String... progress) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String unused) {
+
+        }
+    }
+    private String  retaddress(){
+        String addr="";
+        Geocoder gc = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> locationList = gc.getFromLocation(mLocation.getLatitude(), mLocation.getLongitude(), 1);
+            if (locationList != null) {
+                Address address = locationList.get(0);
+                addr=address.getAddressLine(0);
+
+                //  carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
+
+            }
+        } catch (Exception e) {}
+
+        return addr;
+    }
     private Button.OnClickListener getDBRecord = new Button.OnClickListener() {
         public void onClick(View v) {
 
@@ -310,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
-    private String getAddress() {
+    private void getAddress() {
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit=remdname.edit();
         edit.putString("acc", acc.getText().toString());
@@ -330,8 +395,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         } catch (Exception e) {}
-        */
-        return  addr;
+ */
+
     }
 
 
