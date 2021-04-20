@@ -38,7 +38,7 @@ public class Video extends AppCompatActivity {
     WebView ch1,ch2;
     String sel="";
     Timer timer = new Timer();
-    String[] Balls= new String[] {"請選擇"};
+    String[] Balls= new String[] {"052-QK","787-VG","289-UT","787-VG","AAQ-636"};
     private int secondLeft = 180;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +73,17 @@ public class Video extends AppCompatActivity {
 
             int k=0;
             // bt.setText("更多資訊");
+             if(jsonArray.length()>0){
+              Balls= new String[jsonArray.length()];
+                for(int i = 0; i < jsonArray.length(); i++) //代理或主管有工號者顯示
+                     {	 JSONObject jsonData = jsonArray.getJSONObject(i);
+                         String license_plate=jsonData.getString("license_plate");
+                            //revise
+                         Balls[i]=license_plate;
 
-            Balls= new String[jsonArray.length()];
-            for(int i = 0; i < jsonArray.length(); i++) //代理或主管有工號者顯示
-            {	 JSONObject jsonData = jsonArray.getJSONObject(i);
-                String license_plate=jsonData.getString("license_plate");
-//revise
-                Balls[i]=license_plate;
-
+                     }
             }
+
 
 
         }
@@ -108,7 +110,7 @@ public class Video extends AppCompatActivity {
                     ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
                     x=0;
                     sel=parent.getSelectedItem().toString();
-                   show(sel);
+                  show(sel);
 
                 }
                 @Override
@@ -127,16 +129,23 @@ public class Video extends AppCompatActivity {
             String t2=t.format(date2);
 
             String a=dbcarname.executeQuery(sel);
-            String b[]=a.split(":");
-            String c[]=b[0].split(",");
-            String d[]=b[1].split(",");
-            if(x<c.length){
-                ch1.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH1/"+c[x]);
+           // mytoast(a+"");
 
+            if(!a.contains(" ") ||a!=null){
+                String b[]=a.split(":");
+                String c[]=b[0].split(",");
+                String d[]=b[1].split(",");
+
+                if(x<c.length){
+                    ch1.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH1/"+c[x]);
+
+                }
+                if(x<d.length){
+                    ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
+                }
             }
-            if(x<d.length){
-                ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
-            }
+
+             /* */
 
         }
         public void begin() {

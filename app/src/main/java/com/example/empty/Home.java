@@ -29,7 +29,7 @@ Button stamp,place,track,real,placemuti,placemuti2;
         real.setOnClickListener(realbtn);
         placemuti.setOnClickListener(placemutibtn);
         placemuti2.setOnClickListener(placemuti2btn);
-        real.setVisibility(View.GONE);
+       // real.setVisibility(View.GONE);
     }
     private Button.OnClickListener stampbtn=new Button.OnClickListener(){//打卡
         @Override
