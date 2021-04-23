@@ -1,4 +1,4 @@
-package com.example.empty;
+package com.example.empty.mydb;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,22 +15,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class dbcarname {
-    public static String executeQuery(String scar) {
+public class dbc1 {
+    public static String executeQuery(String car, String date,String time,String place) {
         String result = "";
-
-        try {
+       
+        try { 
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("https://chansing.com.tw/car/carname.php");
+            HttpPost httpPost = new HttpPost("https://demo.chansing.com.tw/GPS/record.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("scar", scar));
-            //params.add(new BasicNameValuePair("passwd", passwd));
+            params.add(new BasicNameValuePair("car", car));
+            params.add(new BasicNameValuePair("date", date));
+            params.add(new BasicNameValuePair("time", time));
+            params.add(new BasicNameValuePair("place", place));
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             HttpResponse httpResponse = httpClient.execute(httpPost);
             //view_account.setText(httpResponse.getStatusLine().toString());
             HttpEntity httpEntity = httpResponse.getEntity();
             InputStream inputStream = httpEntity.getContent();
-
+            
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"), 8);
             StringBuilder builder = new StringBuilder();
             String line = null;
@@ -42,7 +44,7 @@ public class dbcarname {
         } catch(Exception e) {
             // Log.e("log_tag", e.toString());
         }
-
+        
         return result;
     }
 }

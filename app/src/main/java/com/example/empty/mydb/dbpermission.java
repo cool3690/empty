@@ -1,4 +1,4 @@
-package com.example.empty;
+package com.example.empty.mydb;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

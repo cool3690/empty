@@ -1,4 +1,4 @@
-package com.example.empty;
+package com.example.empty.mydb;
 
 import android.content.Context;
 import android.os.Environment;
@@ -25,7 +25,7 @@ public class Write {
         try {
             File sdcard = Environment.getExternalStorageDirectory();
 
-            file = new File(sdcard, "myLog.txt"); //輸出檔案位置
+            file = new File(sdcard, "chansingGPS.txt"); //輸出檔案位置
         //    Log.i("Write File:", file + "");
 
 

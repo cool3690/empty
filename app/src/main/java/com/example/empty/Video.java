@@ -1,17 +1,11 @@
 package com.example.empty;
 
-import android.accounts.Account;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -21,13 +15,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.empty.mydb.dbcarname;
+import com.example.empty.mydb.dbpermission;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Video extends AppCompatActivity {
     String account="",passwd="",vender="";
@@ -67,6 +63,8 @@ public class Video extends AppCompatActivity {
         // ok=(Button)findViewById(R.id.ok);
         ch1=(WebView)findViewById(R.id.ch1);
         ch2=(WebView)findViewById(R.id.ch2);
+        //ch1.setVisibility(View.GONE);
+        //ch2.setVisibility(View.GONE);
         String result = dbpermission.executeQuery(vender);
         try{
             JSONArray jsonArray = new JSONArray(result);
@@ -89,11 +87,14 @@ public class Video extends AppCompatActivity {
         }
 
         catch(Exception e){}
+
+
+
         ArrayAdapter<String> adapterBalls=new ArrayAdapter<String>
-                (this,android.R.layout.simple_spinner_item,Balls);
+                (this,android.R.layout.simple_spinner_dropdown_item,Balls);
 
         // 設定Spinner顯示的格式
-        adapterBalls.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      //  adapterBalls.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // 設定Spinner的資料來源
         spinner.setAdapter(adapterBalls);
@@ -123,12 +124,12 @@ public class Video extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date date=new Date();
             String dts=sdf.format(date);
-
+            dts="20210420";
             SimpleDateFormat t=new SimpleDateFormat("HH");
             Date date2=new Date();
             String t2=t.format(date2);
-
-            String a=dbcarname.executeQuery(sel);
+            t2="03";
+            String a= dbcarname.executeQuery(sel);
            // mytoast(a+"");
 
             if(!a.contains(" ") ||a!=null){
@@ -147,30 +148,30 @@ public class Video extends AppCompatActivity {
 
              /* */
 
-        }
+        } /*
         public void begin() {
             timer.schedule(task, 1000, 1000) ;       }
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        secondLeft--;
+           TimerTask task = new TimerTask() {
+               @Override
+               public void run() {
 
-                        if (secondLeft < 1) {
-                            secondLeft=180;
-                            x++;
-                            show(sel);
-                        }
-                    }
-                });
-            }
-        };
-       /*   */
+                   runOnUiThread(new Runnable() {
+                       @Override
+                       public void run() {
+
+                           secondLeft--;
+
+                           if (secondLeft < 1) {
+                               secondLeft=180;
+                               x++;
+                               show(sel);
+                           }
+                       }
+                   });
+               }
+           };
+          */
     private void mytoast(String str)
     {
         Toast toast=Toast.makeText(this, str, Toast.LENGTH_LONG);
