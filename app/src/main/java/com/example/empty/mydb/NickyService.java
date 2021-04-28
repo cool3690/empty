@@ -1,4 +1,4 @@
-package com.example.empty;
+package com.example.empty.mydb;
 
 import android.annotation.SuppressLint;
 import android.app.Service;

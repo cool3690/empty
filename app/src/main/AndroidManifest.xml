@@ -78,7 +78,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".NickyService" />
+        <service android:name=".mydb.NickyService" />
     </application>
 
 </manifest>

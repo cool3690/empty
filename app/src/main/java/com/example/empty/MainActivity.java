@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.empty.mydb.Write;
+import com.example.empty.mydb.dbauthority;
 import com.example.empty.mydb.dbc1;
 
 public class MainActivity extends AppCompatActivity {
@@ -282,9 +283,7 @@ public class MainActivity extends AppCompatActivity {
     private Button.OnClickListener getDBRecord = new Button.OnClickListener() {
         public void onClick(View v) {
 
-            Button btn = (Button)v;
-     if(btn.getId() == R.id.login)
-            { mLocation = getLocation();
+                mLocation = getLocation();
                 if(!gpsIsOpen()){
                     write.WriteFileExample("GPS not open !"+dateStr);
                     return;
@@ -308,15 +307,62 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat t=new SimpleDateFormat("HH:mm");
                 String timestr=t.format(time);
                 String car_num=acc.getText().toString().toUpperCase();
+                /*
                 if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
                     dbc1.executeQuery(car_num.toUpperCase(),dateStr,timestr,"全興");
+
+                    dbauthority.executeQuery(car_num.toUpperCase(),dateStr,"全興");
                     mytoast("簽到:"+dateStr+" "+timestr+" ");
                 }
                 else{mytoast("車牌格式錯誤!");}
-            }
+
+                 */
+            new chan().execute(car_num, timestr );
         }
     };
+    class chan extends AsyncTask<String, String, String> {
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(final String... params) {
+
+
+            if(!TextUtils.isEmpty(params[0]) &&params[0].contains("-")){
+                dbc1.executeQuery(params[0] ,dateStr,params[1],"全興");
+                dbauthority.executeQuery(params[0] ,dateStr,"全興");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mytoast("簽到:"+dateStr+" "+params[1]+" \n"+retaddress());
+                    }
+                });
+
+            }
+            else{
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mytoast("車牌格式錯誤!");
+                    }
+                });
+            }
+
+            return null;
+        }
+
+        protected void onProgressUpdate(String... progress) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String unused) {
+
+        }
+    }
     private void mytoast(String str)
     {
         Toast toast=Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG);
