@@ -1,11 +1,16 @@
 package com.example.empty;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
@@ -15,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import android.content.Intent;
 import android.app.Activity;
 import android.content.Context;
@@ -37,7 +43,7 @@ import com.example.empty.mydb.dbc1;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
-    private Button login,c1,back;
+    private Button login, c1, back;
     //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
@@ -47,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String dateStr = sdf.format(date);
     //time
-
 
 
     @Override
@@ -70,29 +75,31 @@ public class MainActivity extends AppCompatActivity {
                 .build());
         findViews();
         setListeners();
-        back=(Button) findViewById(R.id.back);
+        back = (Button) findViewById(R.id.back);
         back.setOnClickListener(backbtn);
 
     }
 
     private void findViews() {
-         login = (Button)findViewById(R.id.login);
-        c1 = (Button)findViewById(R.id.c1);
-       // gmap = (Button)findViewById(R.id.gmap);
-        acc=(EditText)findViewById(R.id.acc);
-        SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
-        String name_str=remdname.getString("acc", "");
+        login = (Button) findViewById(R.id.login);
+        c1 = (Button) findViewById(R.id.c1);
+        // gmap = (Button)findViewById(R.id.gmap);
+        acc = (EditText) findViewById(R.id.acc);
+        SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
+        String name_str = remdname.getString("acc", "");
         acc.setText(name_str);
-        Date time =new Date();
-        SimpleDateFormat t=new SimpleDateFormat("HH:mm");
-        String timestr=t.format(time);
-        write.WriteFileExample(name_str+"/"+dateStr+"/"+timestr);
-        if(!gpsIsOpen()){mytoast("請開GPS和網路");}
+        Date time = new Date();
+        SimpleDateFormat t = new SimpleDateFormat("HH:mm");
+        String timestr = t.format(time);
+        write.WriteFileExample(name_str + "/" + dateStr + "/" + timestr);
+        if (!gpsIsOpen()) {
+            mytoast("請開GPS和網路");
+        }
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info=connManager.getActiveNetworkInfo();
-        if (info == null || !info.isConnected() ||!info.isAvailable())
-        {mytoast("請開網路:");
-            write.WriteFileExample(dateStr+"請開網路");
+        NetworkInfo info = connManager.getActiveNetworkInfo();
+        if (info == null || !info.isConnected() || !info.isAvailable()) {
+            mytoast("請開網路:");
+            write.WriteFileExample(dateStr + "請開網路");
         }
 
         mLocation = getLocation();
@@ -124,8 +131,9 @@ public class MainActivity extends AppCompatActivity {
     private void setListeners() {
         login.setOnClickListener(getDBRecord);
         c1.setOnClickListener(c1btn);
-       // gmap.setOnClickListener(getmap);
+        // gmap.setOnClickListener(getmap);
     }
+
     /*
     private Button.OnClickListener getmap = new Button.OnClickListener() {
         public void onClick(View v) {
@@ -166,49 +174,45 @@ public class MainActivity extends AppCompatActivity {
     };
 
      */
-    private boolean haveInternet()
-    {
+    private boolean haveInternet() {
         boolean result = false;
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info=connManager.getActiveNetworkInfo();
+        NetworkInfo info = connManager.getActiveNetworkInfo();
         if (info == null || !info.isConnected())
-          result = false;
+            result = false;
 
         if (!info.isAvailable())
-              result =false;
+            result = false;
         return result;
     }
+
     private Button.OnClickListener c1btn = new Button.OnClickListener() {
         public void onClick(View v) {
 
             mLocation = getLocation();
-                if(!gpsIsOpen()){
-                    write.WriteFileExample("GPS not open !"+dateStr);
-                    return;
-                }
-               ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo info=connManager.getActiveNetworkInfo();
-                if (info == null || !info.isConnected() ||!info.isAvailable())
-                {mytoast(dateStr+"請開網路:");
-                    write.WriteFileExample("請開網路");
-                    return;
-                }
-
-                else if(mLocation != null)
-                {
-                    getAddress();
-                    //mytoast(getAddress()+"");
-                }
-
-                else
-                {mytoast("GPS定位中....");}
+            if (!gpsIsOpen()) {
+                write.WriteFileExample("GPS not open !" + dateStr);
+                return;
+            }
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = connManager.getActiveNetworkInfo();
+            if (info == null || !info.isConnected() || !info.isAvailable()) {
+                mytoast(dateStr + "請開網路:");
+                write.WriteFileExample("請開網路");
+                return;
+            } else if (mLocation != null) {
+                getAddress();
+                //mytoast(getAddress()+"");
+            } else {
+                mytoast("GPS定位中....");
+            }
 
 
-            Date time =new Date();
-            SimpleDateFormat t=new SimpleDateFormat("HH:mm");
-            String timestr=t.format(time);
+            Date time = new Date();
+            SimpleDateFormat t = new SimpleDateFormat("HH:mm");
+            String timestr = t.format(time);
 
-            String car_num=acc.getText().toString().toUpperCase();
+            String car_num = acc.getText().toString().toUpperCase();
             /*
             if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
                 dbc1.executeQuery(car_num ,dateStr,timestr,"永豐餘");
@@ -216,12 +220,12 @@ public class MainActivity extends AppCompatActivity {
             }
             else{mytoast("車牌格式錯誤!");}
             */
-             new DownloadFileAsync() .execute(car_num, timestr );
-
+            new DownloadFileAsync().execute(car_num, timestr);
 
 
         }
     };
+
     class DownloadFileAsync extends AsyncTask<String, String, String> {
 
         @Override
@@ -233,17 +237,16 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(final String... params) {
 
 
-            if(!TextUtils.isEmpty(params[0]) &&params[0].contains("-")){
-                dbc1.executeQuery(params[0] ,dateStr,params[1],"永豐餘");
+            if (!TextUtils.isEmpty(params[0]) && params[0].contains("-")) {
+                dbc1.executeQuery(params[0], dateStr, params[1], "永豐餘");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mytoast("簽到:"+dateStr+" "+params[1]+" \n"+retaddress());
+                        mytoast("簽到:" + dateStr + " " + params[1] + " \n" + retaddress());
                     }
                 });
 
-            }
-            else{
+            } else {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -264,49 +267,48 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    private String  retaddress(){
-        String addr="";
+
+    private String retaddress() {
+        String addr = "";
         Geocoder gc = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> locationList = gc.getFromLocation(mLocation.getLatitude(), mLocation.getLongitude(), 1);
             if (locationList != null) {
                 Address address = locationList.get(0);
-                addr=address.getAddressLine(0);
+                addr = address.getAddressLine(0);
 
                 //  carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
 
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         return addr;
     }
+
     private Button.OnClickListener getDBRecord = new Button.OnClickListener() {
         public void onClick(View v) {
 
-                mLocation = getLocation();
-                if(!gpsIsOpen()){
-                    write.WriteFileExample("GPS not open !"+dateStr);
-                    return;
-                }
-                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo info=connManager.getActiveNetworkInfo();
-                if (info == null || !info.isConnected() ||!info.isAvailable())
-                {mytoast(dateStr+"請開網路:");
-                    write.WriteFileExample("請開網路");
-                    return;
-                }
-
-                else if(mLocation != null)
-                {
-                    getAddress();
-                }
-
-                else
-                {mytoast("GPS定位中....");}
-                Date time =new Date();
-                SimpleDateFormat t=new SimpleDateFormat("HH:mm");
-                String timestr=t.format(time);
-                String car_num=acc.getText().toString().toUpperCase();
+            mLocation = getLocation();
+            if (!gpsIsOpen()) {
+                write.WriteFileExample("GPS not open !" + dateStr);
+                return;
+            }
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = connManager.getActiveNetworkInfo();
+            if (info == null || !info.isConnected() || !info.isAvailable()) {
+                mytoast(dateStr + "請開網路:");
+                write.WriteFileExample("請開網路");
+                return;
+            } else if (mLocation != null) {
+                getAddress();
+            } else {
+                mytoast("GPS定位中....");
+            }
+            Date time = new Date();
+            SimpleDateFormat t = new SimpleDateFormat("HH:mm");
+            String timestr = t.format(time);
+            String car_num = acc.getText().toString().toUpperCase();
                 /*
                 if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
                     dbc1.executeQuery(car_num.toUpperCase(),dateStr,timestr,"全興");
@@ -317,9 +319,10 @@ public class MainActivity extends AppCompatActivity {
                 else{mytoast("車牌格式錯誤!");}
 
                  */
-            new chan().execute(car_num, timestr );
+            new chan().execute(car_num, timestr);
         }
     };
+
     class chan extends AsyncTask<String, String, String> {
 
         @Override
@@ -331,18 +334,17 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(final String... params) {
 
 
-            if(!TextUtils.isEmpty(params[0]) &&params[0].contains("-")){
-                dbc1.executeQuery(params[0] ,dateStr,params[1],"全興");
-                dbauthority.executeQuery(params[0] ,dateStr,"全興");
+            if (!TextUtils.isEmpty(params[0]) && params[0].contains("-")) {
+                dbc1.executeQuery(params[0], dateStr, params[1], "全興");
+                dbauthority.executeQuery(params[0], dateStr, "全興");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mytoast("簽到:"+dateStr+" "+params[1]+" \n"+retaddress());
+                        mytoast("簽到:" + dateStr + " " + params[1] + " \n" + retaddress());
                     }
                 });
 
-            }
-            else{
+            } else {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -363,28 +365,27 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    private void mytoast(String str)
-    {
-        Toast toast=Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG);
+
+    private void mytoast(String str) {
+        Toast toast = Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
-    private boolean gpsIsOpen()
-    {
+
+    private boolean gpsIsOpen() {
         boolean bRet = true;
-        LocationManager alm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-        if(!alm.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
+        LocationManager alm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (!alm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Toast.makeText(this, "未開啟GPS", Toast.LENGTH_SHORT).show();
             bRet = false;
         }
 
         return bRet;
     }
-    private Location getLocation()
-    {
+
+    private Location getLocation() {
         //獲取位置管理服務
-        mLocationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         //查詢服務資訊
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE); //定位精度: 最高
@@ -393,6 +394,11 @@ public class MainActivity extends AppCompatActivity {
         criteria.setCostAllowed(false);  //是否允許付費
         criteria.setPowerRequirement(Criteria.POWER_LOW); //耗電量: 低功耗
         String provider = mLocationManager.getBestProvider(criteria, true); //獲取GPS資訊
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+
+
+        }
         Location location = mLocationManager.getLastKnownLocation(provider);
         mLocationManager.requestLocationUpdates(provider, 2000, 5, locationListener);
         return location;
