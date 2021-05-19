@@ -40,6 +40,7 @@ Button stamp,place,track,real,placemuti,placemuti2;
         placemuti2.setOnClickListener(placemuti2btn);
         BottomNavigationView   nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.location);
+
         nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
