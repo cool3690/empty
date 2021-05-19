@@ -58,12 +58,13 @@
             android:text="地圖" />
 -->
 
-        <Button
-            android:id="@+id/back"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+            android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
-            android:text="返回" />
+            app:menu="@menu/bottom_nav_menu" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,5 +30,13 @@
             android:layout_height="250dp"
             android:layout_below="@id/ch1"
             android:layout_marginTop="5dp" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="?android:attr/windowBackground"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav_menu" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,10 +6,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +30,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -77,6 +81,32 @@ public class Mymap2 extends FragmentActivity implements OnMapReadyCallback, Dire
         etDestination = findViewById(R.id.etDestination);
         btnFindPath.setOnClickListener(getpath);
         etOrigin=address;
+        BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
+        nav_view.setSelectedItemId(R.id.location);
+        nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.location:
+                        startActivity(new Intent(getApplicationContext(),Carplace.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.path:
+                        startActivity(new Intent(getApplicationContext(),Cartrack.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.video:
+                        startActivity(new Intent(getApplicationContext(),Video.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.stamp:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
     private Button.OnClickListener getpath = new Button.OnClickListener() {
         @Override

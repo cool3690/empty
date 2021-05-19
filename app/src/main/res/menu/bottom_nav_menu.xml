@@ -6,16 +6,16 @@
         android:icon="@drawable/location"
         android:title="地點" />
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/path"
         android:icon="@drawable/path"
         android:title="軌跡" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/video"
         android:icon="@drawable/video"
         app:labelVisibilityMode="labeled"
         android:title="影像" />
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/stamp"
         android:icon="@drawable/stamp"
         android:title="打卡" />
 

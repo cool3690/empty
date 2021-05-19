@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Cartrack extends AppCompatActivity {
     WebView myweb;
@@ -41,7 +45,7 @@ public class Cartrack extends AppCompatActivity {
                 .build());
 
         choose=(Spinner)findViewById(R.id.choose);
-        back=(Button) findViewById(R.id.back);
+       // back=(Button) findViewById(R.id.back);
         ArrayAdapter<String> choosespn=new ArrayAdapter<String>(this,android.R.layout.
                 simple_spinner_dropdown_item,course);
 
@@ -60,8 +64,33 @@ public class Cartrack extends AppCompatActivity {
         myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php");
 
        // myweb.scrollTo(0,800);
-        back.setOnClickListener(backbtn);
-
+      //  back.setOnClickListener(backbtn);
+        BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
+        nav_view.setSelectedItemId(R.id.path);
+        nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.location:
+                        startActivity(new Intent(getApplicationContext(),Carplace.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.path:
+                        startActivity(new Intent(getApplicationContext(),Cartrack.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.video:
+                        startActivity(new Intent(getApplicationContext(),Video.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.stamp:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
     private Button.OnClickListener backbtn=new Button.OnClickListener(){//軌跡
         @Override

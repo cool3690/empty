@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -40,6 +41,7 @@ import android.widget.Toast;
 import com.example.empty.mydb.Write;
 import com.example.empty.mydb.dbauthority;
 import com.example.empty.mydb.dbc1;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
@@ -75,9 +77,34 @@ public class MainActivity extends AppCompatActivity {
                 .build());
         findViews();
         setListeners();
-        back = (Button) findViewById(R.id.back);
-        back.setOnClickListener(backbtn);
-
+        //back = (Button) findViewById(R.id.back);
+       // back.setOnClickListener(backbtn);
+        BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
+        nav_view.setSelectedItemId(R.id.stamp);
+        nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.location:
+                        startActivity(new Intent(getApplicationContext(),Carplace.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.path:
+                        startActivity(new Intent(getApplicationContext(),Cartrack.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.video:
+                        startActivity(new Intent(getApplicationContext(),Video.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.stamp:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void findViews() {
@@ -456,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.location) {
             return true;
         }
-        else if (id == R.id.navigation_home) {
+        else if (id == R.id.path) {
             return true;
         }
         return super.onOptionsItemSelected(item);
