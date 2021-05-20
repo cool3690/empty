@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.percentlayout.widget.PercentRelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,47 +7,102 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
 
+        android:layout_marginTop="40dp"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:text="  車牌號碼" />
+    <EditText
+        android:id="@+id/acc"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:background="@drawable/cnum"
 
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt1"
+        android:gravity="center"
+        android:ems="10"
+        android:hint="      輸入車牌號碼 範例:VG-233 "/>
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_widthPercent="90%"
+        android:layout_below="@id/acc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#c0c0c0"/>
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:text="  打卡" />
+    <Button
+        android:id="@+id/login"
+        android:layout_width="329dp"
+        android:layout_height="76dp"
+        android:layout_weight="1"
+
+        android:layout_below="@id/txt2"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        style="@style/btn_primary"
+        android:text="目前位置"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/txt3"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:text="  常用地點" />
+    <Button
+        android:id="@+id/gmap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:layout_marginTop="43dp"
+        android:text="地圖" />
+    <Button
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@id/gmap"
+        android:text="永豐餘"
+        android:textSize="25sp"/>
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/acc">
+
+        <Button
+            android:id="@+id/c1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="永豐餘"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp">
+        android:layout_height="wrap_content"
+        >
 
-        <EditText
-            android:id="@+id/acc"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="46dp"
-            android:ems="10"
-            android:hint="輸入車牌號碼 範例:VG-233 ">
-
-        </EditText>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            android:layout_below="@+id/acc">
-            <Button
-                android:id="@+id/login"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="公司"
-                android:textSize="25sp"/>
-            <Button
-                android:id="@+id/c1"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="永豐餘"
-                android:textSize="25sp"/>
-        </LinearLayout>
         <!--
         <Button
             android:id="@+id/gmap"
@@ -62,9 +117,11 @@
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:labelVisibilityMode="labeled"
-            android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
+
+
     </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.percentlayout.widget.PercentRelativeLayout  >
