@@ -32,14 +32,14 @@ import java.util.Timer;
 
 public class Video extends AppCompatActivity {
     String account="",passwd="",vender="";
-    Spinner spinner;
+    Spinner choose;
     Button ok;
 
     int x=0;
     WebView ch1,ch2;
     String sel="";
     Timer timer = new Timer();
-    String[] Balls= new String[] {"052-QK","787-VG","289-UT","787-VG","AAQ-636"};
+    String course[]= {"    052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
     private int secondLeft = 180;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +64,13 @@ public class Video extends AppCompatActivity {
         vender=Account.getVendor_id();
 
        */
-        spinner=(Spinner)findViewById(R.id.spinner);
+        choose=(Spinner)findViewById(R.id.choose);
         // ok=(Button)findViewById(R.id.ok);
         ch1=(WebView)findViewById(R.id.ch1);
         ch2=(WebView)findViewById(R.id.ch2);
-        //ch1.setVisibility(View.GONE);
-        //ch2.setVisibility(View.GONE);
+        // ch1.setVisibility(View.GONE);
+      //  ch2.setVisibility(View.GONE);
+        /*
         String result = dbpermission.executeQuery(vender);
         try{
             JSONArray jsonArray = new JSONArray(result);
@@ -93,17 +94,14 @@ public class Video extends AppCompatActivity {
 
         catch(Exception e){}
 
+*/
 
+        ArrayAdapter<String> choosespn=new ArrayAdapter<String>(this,android.R.layout.
+                simple_spinner_dropdown_item,course);
 
-        ArrayAdapter<String> adapterBalls=new ArrayAdapter<String>
-                (this,android.R.layout.simple_spinner_dropdown_item,Balls);
+        choose.setAdapter(choosespn);
 
-        // 設定Spinner顯示的格式
-      //  adapterBalls.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // 設定Spinner的資料來源
-        spinner.setAdapter(adapterBalls);
-        spinner.setOnItemSelectedListener(spnPreferListener);
+        choose.setOnItemSelectedListener(chbtn);
       //  begin();
         BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.video);
@@ -133,13 +131,13 @@ public class Video extends AppCompatActivity {
         });
     }
 
-    private Spinner.OnItemSelectedListener spnPreferListener=
+    private Spinner.OnItemSelectedListener chbtn=
             new Spinner.OnItemSelectedListener(){
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View v,
                                            int position, long id) {
                     TextView textView = (TextView) v;
-                    ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+                     ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
                     x=0;
                     sel=parent.getSelectedItem().toString();
                   show(sel);
