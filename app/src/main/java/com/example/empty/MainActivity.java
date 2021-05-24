@@ -1,6 +1,7 @@
 package com.example.empty;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +36,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.StrictMode;
 import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,7 +49,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
-    private Button login, c1, back;
+    private Button login, c1,c2,c3,c4,c5,c6;
     //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     Date date = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String dateStr = sdf.format(date);
+    String company_name="";
     //time
 
 
@@ -61,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -75,10 +78,30 @@ public class MainActivity extends AppCompatActivity {
                 .penaltyLog()
                 .penaltyDeath()
                 .build());
-        findViews();
-        setListeners();
-        //back = (Button) findViewById(R.id.back);
-       // back.setOnClickListener(backbtn);
+
+       findViews();
+         setListeners();
+
+
+        Context context = MainActivity.this;
+        Dialog   dia = new Dialog(context, R.style.edit_AlertDialog_style);
+        dia.setContentView(R.layout.imgshow);
+        //  Button btok=(Button)dia.findViewById(R.id.btok);
+        dia.setCanceledOnTouchOutside(true); // Sets whether this dialog is
+        Window w = dia.getWindow();
+        WindowManager.LayoutParams lp = w.getAttributes();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        lp.x = 0; // 新位置X坐標
+         lp.y=height-200;
+         lp.width =width; // 寬度
+        dia.show();
+        dia.onWindowAttributesChanged(lp);
+
+
+
         BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.stamp);
         nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -105,20 +128,29 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
     }
 
     private void findViews() {
         login = (Button) findViewById(R.id.login);
         c1 = (Button) findViewById(R.id.c1);
-        // gmap = (Button)findViewById(R.id.gmap);
+        c2 = (Button) findViewById(R.id.c2);
+        c3 = (Button) findViewById(R.id.c3);
+        c4 = (Button) findViewById(R.id.c4);
+        c5 = (Button) findViewById(R.id.c5);
+        c6 = (Button) findViewById(R.id.c6);
+
         acc = (EditText) findViewById(R.id.acc);
         SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
         String name_str = remdname.getString("acc", "");
         acc.setText(name_str);
+
         Date time = new Date();
         SimpleDateFormat t = new SimpleDateFormat("HH:mm");
         String timestr = t.format(time);
-        write.WriteFileExample(name_str + "/" + dateStr + "/" + timestr);
+
+      write.WriteFileExample(name_str + "/" + dateStr + "/" + timestr);
         if (!gpsIsOpen()) {
             mytoast("請開GPS和網路");
         }
@@ -128,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
             mytoast("請開網路:");
             write.WriteFileExample(dateStr + "請開網路");
         }
-
+/*
         mLocation = getLocation();
-       /* if(mLocation != null)
+         if(mLocation != null)
         {
            Intent intent2 = new Intent(MainActivity.this, NickyService.class);
 
@@ -156,8 +188,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        login.setOnClickListener(getDBRecord);
+       login.setOnClickListener(c1btn);
         c1.setOnClickListener(c1btn);
+        c2.setOnClickListener(c1btn);
+        c3.setOnClickListener(c1btn);
+        c4.setOnClickListener(c1btn);
+        c5.setOnClickListener(c1btn);
+        c6.setOnClickListener(c1btn);
         // gmap.setOnClickListener(getmap);
     }
 
@@ -216,6 +253,36 @@ public class MainActivity extends AppCompatActivity {
     private Button.OnClickListener c1btn = new Button.OnClickListener() {
         public void onClick(View v) {
 
+            switch (v.getId()){
+                case R.id.login:
+                    company_name=" ";
+
+                    break;
+                case R.id.c1:
+                company_name=c1.getText().toString();
+                break;
+                case R.id.c2:
+                company_name=c2.getText().toString();
+                break;
+                case R.id.c3:
+                company_name=c3.getText().toString();
+                break;
+                case R.id.c4:
+                company_name=c4.getText().toString();
+                break;
+                case R.id.c5:
+                 company_name=c5.getText().toString();
+                break;
+                case R.id.c6:
+                company_name=c6.getText().toString();
+                break;
+                default:
+                    break;
+            }
+           // mytoast(company_name);
+
+
+ /*
             mLocation = getLocation();
             if (!gpsIsOpen()) {
                 write.WriteFileExample("GPS not open !" + dateStr);
@@ -233,20 +300,21 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 mytoast("GPS定位中....");
             }
-
-
+*/
+            getAddress();
             Date time = new Date();
             SimpleDateFormat t = new SimpleDateFormat("HH:mm");
             String timestr = t.format(time);
 
             String car_num = acc.getText().toString().toUpperCase();
+
             /*
             if(!TextUtils.isEmpty(car_num) &&car_num.contains("-")){
-                dbc1.executeQuery(car_num ,dateStr,timestr,"永豐餘");
+                dbc1.executeQuery(car_num ,dateStr,timestr,company_name);
                 mytoast("簽到:"+dateStr+" "+timestr+" \n"+retaddress());
             }
             else{mytoast("車牌格式錯誤!");}
-            */
+*/
             new DownloadFileAsync().execute(car_num, timestr);
 
 
@@ -265,11 +333,24 @@ public class MainActivity extends AppCompatActivity {
 
 
             if (!TextUtils.isEmpty(params[0]) && params[0].contains("-")) {
-                dbc1.executeQuery(params[0], dateStr, params[1], "永豐餘");
+
+                dbc1.executeQuery(params[0], dateStr, params[1],company_name);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mytoast("簽到:" + dateStr + " " + params[1] + " \n" + retaddress());
+                        //mytoast("簽到:" + dateStr + " " + params[1] + " \n" + retaddress());
+                       Context context = MainActivity.this;
+                     Dialog   dia = new Dialog(context, R.style.edit_AlertDialog_style);
+                        dia.setContentView(R.layout.imgshow);
+                      //  Button btok=(Button)dia.findViewById(R.id.btok);
+                        dia.setCanceledOnTouchOutside(true); // Sets whether this dialog is
+                        Window w = dia.getWindow();
+                        WindowManager.LayoutParams lp = w.getAttributes();
+                        lp.x = 0; // 新位置X坐標
+                        lp.width =950; // 寬度
+                        dia.show();
+                        dia.onWindowAttributesChanged(lp);
+
                     }
                 });
 
@@ -437,14 +518,7 @@ public class MainActivity extends AppCompatActivity {
         public void onProviderEnabled(String provider){}
         public void onStatusChanged(String provider, int status, Bundle extras){}
     };
-    private Button.OnClickListener backbtn=new Button.OnClickListener(){//軌跡
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(MainActivity.this, Home.class);
-            startActivity(intent);
-        }
-    };
+
     private void getAddress() {
         SharedPreferences remdname=getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit=remdname.edit();
@@ -461,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
                 Address address = locationList.get(0);
                 addr=address.getAddressLine(0);
 
-                 //  carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
+                    carin.executeQuery(car_num,dateStr,timestr,addr,mLocation.getLatitude()+"",mLocation.getLongitude()+"");
 
             }
         } catch (Exception e) {}
@@ -470,22 +544,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.location) {
-            return true;
-        }
-        else if (id == R.id.path) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

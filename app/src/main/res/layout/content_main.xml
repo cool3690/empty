@@ -11,8 +11,8 @@
         android:id="@+id/txt1"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="40dp"
+        android:textColor="#616161"
+        android:layout_marginTop="60dp"
         android:textSize="14sp"
         android:layout_centerHorizontal="true"
         android:text="  車牌號碼" />
@@ -30,9 +30,9 @@
         android:hint="      輸入車牌號碼 範例:VG-233 "/>
     <View
         android:id="@+id/line"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        app:layout_widthPercent="90%"
+        android:layout_width="329dp"
+        android:layout_height="1dp"
+
         android:layout_below="@id/acc"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -44,6 +44,7 @@
         android:layout_below="@id/line"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
+        android:textColor="#616161"
         android:layout_centerHorizontal="true"
         android:text="  打卡" />
     <Button
@@ -57,7 +58,7 @@
         android:layout_centerHorizontal="true"
         style="@style/btn_primary"
         android:text="目前位置"
-        android:textSize="25sp"/>
+        android:textSize="24sp"/>
     <TextView
         android:id="@+id/txt3"
         android:layout_width="329dp"
@@ -65,63 +66,117 @@
         android:layout_below="@id/login"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
+        android:textColor="#616161"
         android:layout_centerHorizontal="true"
         android:text="  常用地點" />
-    <Button
-        android:id="@+id/gmap"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_marginTop="43dp"
-        android:text="地圖" />
-    <Button
-        android:id="@+id/c1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_below="@id/gmap"
-        android:text="永豐餘"
-        android:textSize="25sp"/>
-    <!--
     <LinearLayout
+        android:id="@+id/L1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:layout_below="@+id/acc">
-
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/txt3"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/c1"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_weight="1"
-            android:text="永豐餘"
-            android:textSize="25sp"/>
-    </LinearLayout>
-    -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+            android:textSize="24sp"
+            style="@style/btn_primary2"
 
-        <!--
+            android:text="全興" />
         <Button
-            android:id="@+id/gmap"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
-            android:layout_marginTop="43dp"
-            android:text="地圖" />
--->
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="match_parent"
+            android:id="@+id/c2"
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:background="?android:attr/windowBackground"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu" />
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
 
+            style="@style/btn_primary2"
+            android:text="永豐餘" />
+        <Button
+            android:id="@+id/c3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="24sp"
+            style="@style/btn_primary2"
+            android:layout_marginLeft="15dp"
 
-    </RelativeLayout>
+            android:text="正隆" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/L2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/L1"
+
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/c4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="24sp"
+            style="@style/btn_primary2"
+
+            android:text="台汽電" />
+        <Button
+            android:id="@+id/c5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            style="@style/btn_primary2"
+
+            android:text="后里" />
+        <Button
+            android:id="@+id/c6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="24sp"
+            android:layout_marginLeft="15dp"
+            style="@style/btn_primary2"
+
+            android:text="竹北" />
+    </LinearLayout>
+    <!--
+        <Button
+            android:id="@+id/c1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@id/gmap"
+            android:text="永豐餘"
+          droid:textSize="25sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:layout_below="@+id/acc">
+
+            <Button
+                android:id="@+id/c1"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="永豐餘"
+                android:textSize="25sp"/>
+        </LinearLayout>
+        -->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
 </androidx.percentlayout.widget.PercentRelativeLayout  >
