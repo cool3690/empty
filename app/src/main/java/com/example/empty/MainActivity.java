@@ -40,6 +40,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.empty.mydb.Write;
@@ -50,6 +51,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private EditText acc;
     private Button login, c1,c2,c3,c4,c5,c6;
+    RelativeLayout Rimg;
+    boolean tf=false;
     //private Button gmap ;
     private Location mLocation;
     private LocationManager mLocationManager;
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
        findViews();
          setListeners();
 
-
+/*
         Context context = MainActivity.this;
         Dialog   dia = new Dialog(context, R.style.edit_AlertDialog_style);
         dia.setContentView(R.layout.imgshow);
@@ -99,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
          lp.width =width; // 寬度
         dia.show();
         dia.onWindowAttributesChanged(lp);
+
+ */
 
 
 
@@ -140,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         c4 = (Button) findViewById(R.id.c4);
         c5 = (Button) findViewById(R.id.c5);
         c6 = (Button) findViewById(R.id.c6);
+        Rimg= (RelativeLayout) findViewById(R.id.Rimg);
 
         acc = (EditText) findViewById(R.id.acc);
         SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
@@ -160,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
             mytoast("請開網路:");
             write.WriteFileExample(dateStr + "請開網路");
         }
+        Rimg.setVisibility(View.GONE);
+        Rimg.setOnClickListener(Rimgbtn);
+
 /*
         mLocation = getLocation();
          if(mLocation != null)
@@ -197,7 +206,13 @@ public class MainActivity extends AppCompatActivity {
         c6.setOnClickListener(c1btn);
         // gmap.setOnClickListener(getmap);
     }
-
+    private RelativeLayout.OnClickListener Rimgbtn=new RelativeLayout.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            tf=false;
+            Rimg.setVisibility(View.GONE);
+        }
+    };
     /*
     private Button.OnClickListener getmap = new Button.OnClickListener() {
         public void onClick(View v) {
@@ -339,17 +354,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         //mytoast("簽到:" + dateStr + " " + params[1] + " \n" + retaddress());
-                       Context context = MainActivity.this;
-                     Dialog   dia = new Dialog(context, R.style.edit_AlertDialog_style);
-                        dia.setContentView(R.layout.imgshow);
-                      //  Button btok=(Button)dia.findViewById(R.id.btok);
-                        dia.setCanceledOnTouchOutside(true); // Sets whether this dialog is
-                        Window w = dia.getWindow();
-                        WindowManager.LayoutParams lp = w.getAttributes();
-                        lp.x = 0; // 新位置X坐標
-                        lp.width =950; // 寬度
-                        dia.show();
-                        dia.onWindowAttributesChanged(lp);
+                       Rimg.setVisibility(View.VISIBLE);
+                       tf=true;
 
                     }
                 });
