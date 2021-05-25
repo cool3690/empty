@@ -48,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
             android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_nav_menu" />

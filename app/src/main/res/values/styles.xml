@@ -41,4 +41,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 是否使用背景半透明 -->
     </style>
+    <style name="MyNavigationViewItemStyle" parent="AppTheme">
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+    </style>
 </resources>

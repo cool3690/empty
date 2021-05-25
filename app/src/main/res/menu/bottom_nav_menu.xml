@@ -5,7 +5,7 @@
         android:textSize="12sp"
         android:id="@+id/location"
         android:icon="@drawable/location"
-
+        app:itemIconPadding="@dimen/design_bottom_navigation_height"
         android:title="地點" />
     <item
         android:textSize="12sp"

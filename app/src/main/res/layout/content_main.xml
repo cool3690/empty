@@ -7,63 +7,81 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="329dp"
-        android:layout_height="wrap_content"
-        android:textColor="#616161"
-        android:layout_marginTop="60dp"
-        android:textSize="14sp"
-        android:layout_centerHorizontal="true"
-        android:text="  車牌號碼" />
-    <EditText
-        android:id="@+id/acc"
-        android:layout_width="329dp"
-        android:layout_height="50dp"
-        android:background="@drawable/cnum"
-
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/txt1"
+    <LinearLayout
+        android:id="@+id/L0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:ems="10"
-        android:hint="      輸入車牌號碼 範例:VG-233 "/>
+        app:layout_heightPercent="21%">
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:textColor="#616161"
+
+            android:textSize="14sp"
+            android:layout_centerHorizontal="true"
+            android:text="  車牌號碼" />
+        <EditText
+            android:id="@+id/acc"
+            android:layout_width="329dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cnum"
+
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/txt1"
+            android:gravity="center"
+            android:ems="10"
+            android:hint="      輸入車牌號碼 範例:VG-233 "/>
+    </LinearLayout>
+
     <View
         android:id="@+id/line"
-        android:layout_width="329dp"
+        android:layout_width="295dp"
         android:layout_height="1dp"
 
-        android:layout_below="@id/acc"
+        android:layout_below="@id/L0"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#c0c0c0"/>
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="329dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line"
-        android:layout_marginTop="10dp"
-        android:textSize="14sp"
-        android:textColor="#616161"
-        android:layout_centerHorizontal="true"
-        android:text="  打卡" />
-    <Button
-        android:id="@+id/login"
-        android:layout_width="329dp"
-        android:layout_height="76dp"
-        android:layout_weight="1"
 
-        android:layout_below="@id/txt2"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        style="@style/btn_primary"
-        android:text="目前位置"
-        android:textSize="24sp"/>
+        android:background="#c0c0c0"/>
+    <LinearLayout
+        android:id="@+id/L3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_below="@id/line"
+        android:gravity="center"
+        app:layout_heightPercent="21%">
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:textColor="#616161"
+            android:layout_centerHorizontal="true"
+            android:text="  打卡" />
+        <Button
+            android:id="@+id/login"
+            android:layout_width="329dp"
+            android:layout_height="76dp"
+
+            android:layout_below="@id/txt2"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            style="@style/btn_primary"
+            android:text="目前位置"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/txt3"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login"
+        android:layout_below="@id/L3"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
         android:textColor="#616161"
@@ -144,31 +162,7 @@
 
             android:text="竹北" />
     </LinearLayout>
-    <!--
-        <Button
-            android:id="@+id/c1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_below="@id/gmap"
-            android:text="永豐餘"
-          droid:textSize="25sp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            android:layout_below="@+id/acc">
-
-            <Button
-                android:id="@+id/c1"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="永豐餘"
-                android:textSize="25sp"/>
-        </LinearLayout>
-        -->
+<!---->
     <RelativeLayout
         android:id="@+id/Rimg"
         android:layout_width="match_parent"
@@ -186,7 +180,7 @@
             android:scaleType="fitXY"
             android:paddingRight="8px"
             android:paddingBottom="9px"
-            app:srcCompat="@drawable/checkbg"
+            app:srcCompat="@drawable/checkbg2"
             />
         <ImageView
             android:id="@+id/start_img"
@@ -207,6 +201,7 @@
             android:text="打卡成功" />
 
     </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
@@ -214,6 +209,8 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:menu="@menu/bottom_nav_menu" />
 
 </androidx.percentlayout.widget.PercentRelativeLayout  >

@@ -25,7 +25,7 @@ public class Cartrack extends AppCompatActivity {
     Spinner choose;
     Button back;
     private Menu menu;
-    String course[]= {"    KLE-5592" ,"    788-UG","   785-UG ","  233-VG","   787-VG"};
+    String course[]= {"    KLE-5592" ,"    788-UG","    785-UG ","    233-VG","    787-VG"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

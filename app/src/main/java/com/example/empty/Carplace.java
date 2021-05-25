@@ -15,7 +15,10 @@ import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,15 +26,17 @@ public class Carplace extends AppCompatActivity {
     WebView myweb;
     String account="",passwd="",names="",course_num="";
     Spinner choose;
-
+    Switch swall;
     private Menu menu;
-    String course[]= {"KLE-5592" ,"788-UG","785-UG ","233-VG","787-VG"};
+    boolean tf=false;
+    int pos=0;
+    String course[]= {"    KLE-5592" ,"    788-UG","    785-UG ","    233-VG","    787-VG"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.carplace);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       // Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -44,7 +49,7 @@ public class Carplace extends AppCompatActivity {
                 .penaltyLog()
                 .penaltyDeath()
                 .build());
-
+        swall = findViewById(R.id.switch_all);
         choose=(Spinner)findViewById(R.id.choose);
 
         ArrayAdapter<String> choosespn=new ArrayAdapter<String>(this,android.R.layout.
@@ -60,6 +65,23 @@ public class Carplace extends AppCompatActivity {
         myweb.setWebViewClient(new WebViewClient());
 
         myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php");
+
+        swall.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //Toast.makeText(Carplace.this, "Sw1: "+isChecked, Toast.LENGTH_SHORT).show();
+                tf=isChecked;
+                if(!tf){
+                    myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php?num="+pos);
+                }
+
+                else{
+                    myweb.loadUrl("http://vehicle.chansing.com.tw/car/map3.php?num="+pos);
+                }
+            }
+        });
+
+
         BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.location);
         nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -101,12 +123,15 @@ public class Carplace extends AppCompatActivity {
         public void onItemSelected(AdapterView<?> parent, View v,
                                    int position, long id) {
            int tmp=position+1;
+           pos=position;
+            if(!tf){
+                myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php?num="+position);
+            }
 
-          // dbplace.executeQuery(tmp+"");
-          //  myweb.loadUrl("http://vehicle.chansing.com.tw/car/map"+tmp+".php");
-            myweb.loadUrl("http://vehicle.chansing.com.tw/car/map1.php?num="+position);
-          //  myweb.scrollTo(0,1400);    http://vehicle.chansing.com.tw/car/map1.php?num=www.google.com
-          //  sel=parent.getSelectedItem().toString();
+            else{
+                myweb.loadUrl("http://vehicle.chansing.com.tw/car/map3.php?num="+position);
+            }
+
 
         }
         @Override

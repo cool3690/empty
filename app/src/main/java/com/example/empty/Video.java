@@ -39,7 +39,7 @@ public class Video extends AppCompatActivity {
     WebView ch1,ch2;
     String sel="";
     Timer timer = new Timer();
-    String course[]= {"052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
+    String course[]= {"    052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
     private int secondLeft = 180;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
