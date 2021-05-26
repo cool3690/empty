@@ -12,53 +12,63 @@
 
         />
     <!---->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/webview"
-        >
-        <TextView
-            android:id="@+id/txt1"
-            android:layout_width="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-
-            android:layout_marginLeft="27dp"
             android:layout_marginTop="25dp"
-            android:text="   車牌尋找" />
-        <TextView
-            android:id="@+id/txt2"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_weight=".6"
+
+                android:layout_marginLeft="27dp"
+                android:text="   車牌尋找" />
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_weight=".4"
+                android:gravity="right"
+                android:layout_marginRight="39dp"
+                android:text="顯示附近車輛" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_toRightOf="@id/txt1"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="25dp"
-            android:text="顯示附近車輛" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/choose"
+                android:layout_width="200dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="27dp"
 
+                android:background="@drawable/selecter"
+                 />
 
-        <Spinner
-            android:id="@+id/choose"
-            android:layout_width="200dp"
-            android:layout_height="49dp"
-            android:layout_marginLeft="27dp"
-            android:layout_below="@id/txt1"
-            android:background="@drawable/selecter"
-            android:layout_marginTop="10dp"/>
+            <Switch
+                android:id="@+id/switch_all"
+                android:layout_width="63dp"
+                android:layout_height="28dp"
+                android:layout_weight=".4"
+                android:layout_gravity="center"
+                android:layout_marginRight="60dp"
 
-        <Switch
-            android:id="@+id/switch_all"
-            android:layout_width="63dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="45dp"
-            android:layout_below="@id/txt1"
-            android:layout_toRightOf="@id/choose"
-            android:layout_marginTop="20dp"
-            android:thumb="@drawable/ex1_switch_thumb"
-            android:track="@drawable/ex1_switch_track"
-           />
-
-    </RelativeLayout>
+                android:thumb="@drawable/ex1_switch_thumb"
+                android:track="@drawable/ex1_switch_track"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -70,5 +80,14 @@
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@drawable/bottom_navigation_selector"
         app:itemIconPadding="@dimen/design_bottom_navigation_height"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu" >
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="100dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="95dp"
+            android:background="#00CE7C"/>
+
+   </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.percentlayout.widget.PercentRelativeLayout>
