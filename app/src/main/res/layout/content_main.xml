@@ -74,7 +74,7 @@
             android:layout_centerHorizontal="true"
             style="@style/btn_primary"
             android:text="目前位置"
-            android:textSize="24sp"/>
+            android:textSize="22sp"/>
     </LinearLayout>
 
     <TextView
@@ -101,7 +101,7 @@
             android:id="@+id/c1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             style="@style/btn_primary2"
 
             android:text="全興" />
@@ -109,7 +109,7 @@
             android:id="@+id/c2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:layout_marginLeft="15dp"
 
             style="@style/btn_primary2"
@@ -118,7 +118,7 @@
             android:id="@+id/c3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             style="@style/btn_primary2"
             android:layout_marginLeft="15dp"
 
@@ -139,7 +139,7 @@
             android:id="@+id/c4"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             style="@style/btn_primary2"
 
             android:text="台汽電" />
@@ -147,7 +147,7 @@
             android:id="@+id/c5"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:layout_marginLeft="15dp"
             style="@style/btn_primary2"
 
@@ -156,7 +156,7 @@
             android:id="@+id/c6"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:layout_marginLeft="15dp"
             style="@style/btn_primary2"
 
@@ -197,7 +197,7 @@
             android:gravity="center"
             android:layout_below="@id/start_img"
             android:layout_marginTop="10dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:text="打卡成功" />
 
     </RelativeLayout>
