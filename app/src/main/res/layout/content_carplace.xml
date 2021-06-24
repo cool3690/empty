@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:layout_weight=".6"
-
                 android:layout_marginLeft="27dp"
                 android:text="   車牌尋找" />
             <TextView

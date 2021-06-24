@@ -21,7 +21,7 @@ public class dbcarname {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("https://chansing.com.tw/car/carname.php");
+            HttpPost httpPost = new HttpPost("http://52.155.115.220:6061/ProcessedFile/carname.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("scar", scar));
             //params.add(new BasicNameValuePair("passwd", passwd));

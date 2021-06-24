@@ -39,7 +39,7 @@ public class Video extends AppCompatActivity {
     WebView ch1,ch2;
     String sel="";
     Timer timer = new Timer();
-    String course[]= {"    052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
+    String course[]= {"    testVideo","    052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
     private int secondLeft = 180;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,29 +153,37 @@ public class Video extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date date=new Date();
             String dts=sdf.format(date);
-            dts="20210420";
+            dts="20210622";
             SimpleDateFormat t=new SimpleDateFormat("HH");
             Date date2=new Date();
             String t2=t.format(date2);
-            t2="03";
+            t2="16";
             String a= dbcarname.executeQuery(sel);
            // mytoast(a+"");
+           // ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/testVideo/20210622/15/CH1/Converted/testVideo_20210622_1533_CH1.mp4");
 
-            if(!a.contains(" ") ||a!=null){
+            if(a!=null){
                 String b[]=a.split(":");
                 String c[]=b[0].split(",");
                 String d[]=b[1].split(",");
 
                 if(x<c.length){
-                    ch1.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH1/"+c[x]);
+                 //   mytoast("http://52.155.115.220:6061/ProcessedFile/"+sel+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                   // sel.trim();
+                   ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                    //    ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/testVideo/20210622/15/CH1/Converted/testVideo_20210622_1533_CH1.mp4");
 
                 }
+
                 if(x<d.length){
-                    ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
+                    ch2.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH2/Converted/"+d[x]);
+                    //ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
                 }
-            }
 
-             /* */
+
+            }
+             /**/
+
 
         } /*
         public void begin() {
