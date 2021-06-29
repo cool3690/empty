@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,20 +35,19 @@ public class Video extends AppCompatActivity {
     String account="",passwd="",vender="";
     Spinner choose;
     Button ok;
-
+    LinearLayout L0;
     int x=0;
-    WebView ch1,ch2;
+    WebView ch1,ch2,ch3,ch4,ch5;
+    Button bt1,bt2,bt4;
     String sel="";
     Timer timer = new Timer();
-    String course[]= {"    testVideo","    052-QK","    787-VG","    289-UT","    787-VG","    AAQ-636"};
-    private int secondLeft = 180;
+    String course[]= {"    233-VG","    787-VG","    289-UT","    787-VG","    AAQ-636"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video);
-       // Toolbar toolbar = findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
-      //  GlobalVariable Account = (GlobalVariable)getApplicationContext();
+
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
                 .detectDiskWrites()
@@ -68,9 +68,17 @@ public class Video extends AppCompatActivity {
         // ok=(Button)findViewById(R.id.ok);
         ch1=(WebView)findViewById(R.id.ch1);
         ch2=(WebView)findViewById(R.id.ch2);
-        // ch1.setVisibility(View.GONE);
-      //  ch2.setVisibility(View.GONE);
-        /*
+        ch3=(WebView)findViewById(R.id.ch3);
+        ch4=(WebView)findViewById(R.id.ch4);
+        bt1=(Button)findViewById(R.id.bt1);
+        bt2=(Button)findViewById(R.id.bt2);
+        bt4=(Button)findViewById(R.id.bt4);
+        L0=(LinearLayout)findViewById(R.id.L0);
+        ch5=(WebView)findViewById(R.id.ch5);
+        L0.setVisibility(View.GONE);
+        bt1.setOnClickListener(bt1A);
+        bt2.setOnClickListener(bt2B);
+        bt4.setOnClickListener(bt4C);
         String result = dbpermission.executeQuery(vender);
         try{
             JSONArray jsonArray = new JSONArray(result);
@@ -78,12 +86,12 @@ public class Video extends AppCompatActivity {
             int k=0;
             // bt.setText("更多資訊");
              if(jsonArray.length()>0){
-              Balls= new String[jsonArray.length()];
+                 course= new String[jsonArray.length()];
                 for(int i = 0; i < jsonArray.length(); i++) //代理或主管有工號者顯示
                      {	 JSONObject jsonData = jsonArray.getJSONObject(i);
                          String license_plate=jsonData.getString("license_plate");
                             //revise
-                         Balls[i]=license_plate;
+                         course[i]="    "+license_plate;
 
                      }
             }
@@ -94,7 +102,7 @@ public class Video extends AppCompatActivity {
 
         catch(Exception e){}
 
-*/
+/**/
 
         ArrayAdapter<String> choosespn=new ArrayAdapter<String>(this,android.R.layout.
                 simple_spinner_dropdown_item,course);
@@ -130,7 +138,29 @@ public class Video extends AppCompatActivity {
             }
         });
     }
-
+    private Button.OnClickListener bt1A=new Button.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            L0.setVisibility(View.VISIBLE);
+            L0.bringToFront();
+        }
+    };
+    private Button.OnClickListener bt2B=new Button.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            ch3.setVisibility(View.GONE);
+            ch4.setVisibility(View.GONE);
+            L0.setVisibility(View.GONE);
+        }
+    };
+    private Button.OnClickListener bt4C=new Button.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            L0.setVisibility(View.GONE);
+            ch3.setVisibility(View.VISIBLE);
+            ch4.setVisibility(View.VISIBLE);
+        }
+    };
     private Spinner.OnItemSelectedListener chbtn=
             new Spinner.OnItemSelectedListener(){
                 @Override
@@ -153,34 +183,51 @@ public class Video extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date date=new Date();
             String dts=sdf.format(date);
-            dts="20210622";
+            dts="20210624";
             SimpleDateFormat t=new SimpleDateFormat("HH");
             Date date2=new Date();
             String t2=t.format(date2);
-            t2="16";
-            String a= dbcarname.executeQuery(sel);
+            t2="13";
+            String a= dbcarname.executeQuery(sel.trim());
            // mytoast(a+"");
            // ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/testVideo/20210622/15/CH1/Converted/testVideo_20210622_1533_CH1.mp4");
 
             if(a!=null){
                 String b[]=a.split(":");
-                String c[]=b[0].split(",");
-                String d[]=b[1].split(",");
 
-                if(x<c.length){
-                 //   mytoast("http://52.155.115.220:6061/ProcessedFile/"+sel+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
-                   // sel.trim();
-                   ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
-                    //    ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/testVideo/20210622/15/CH1/Converted/testVideo_20210622_1533_CH1.mp4");
-
+                if(b.length>0){
+                    String c[]=b[0].split(",");
+                    if(x<c.length){
+                        //  mytoast("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                        // sel.trim();
+                        ch1.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                        ch5.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                    }
                 }
-
-                if(x<d.length){
-                    ch2.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH2/Converted/"+d[x]);
-                    //ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
+                if(b.length>1) {
+                    String d[] = b[1].split(",");
+                    if(x<d.length){
+                        ch2.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH2/Converted/"+d[x]);
+                        //ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
+                    }
                 }
+                if(b.length>2) {
+                    String e[]=b[2].split(",");
+                    if(x<e.length){
 
+                        ch3.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH3/Converted/"+e[x]);
 
+                    }
+                }
+                if(b.length>3) {
+                    String f[]=b[3].split(",");
+                    if(x<f.length){
+                        ch4.loadUrl("http://52.155.115.220:6061/ProcessedFile/"+sel.trim()+"/"+dts+"/"+t2+"/CH4/Converted/"+f[x]);
+
+                    }
+                }
+                
+                //////////////////////
             }
              /**/
 
