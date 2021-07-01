@@ -16,14 +16,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class dbpermission {
-    public static String executeQuery(String vendor_id) {
+    public static String executeQuery(String vendor_id,String acc,String pwd) {
         String result = "";
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
+            //https://chansing.com.tw/app/dbpermission.php
             HttpPost httpPost = new HttpPost("https://chansing.com.tw/app/dbpermission.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("vendor_id", vendor_id));
+            params.add(new BasicNameValuePair("acc", acc));
+            params.add(new BasicNameValuePair("pwd", pwd));
             //params.add(new BasicNameValuePair("passwd", passwd));
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             HttpResponse httpResponse = httpClient.execute(httpPost);

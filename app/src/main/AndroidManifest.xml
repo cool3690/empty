@@ -25,10 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".Carplacemuti2"
             android:label="@string/title_activity_carplacemuti2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Carplacemuti"
             android:label="@string/title_activity_carplacemuti"
@@ -38,20 +39,23 @@
             android:label="@string/title_activity_cartrack"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Main"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".Carplace"
             android:label="@string/title_activity_carplace"
-            android:theme="@style/AppTheme.NoActionBar"  >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Video"
             android:label="@string/title_activity_video"
-            android:theme="@style/AppTheme.NoActionBar"  />
-         
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -73,14 +77,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/caard"
-
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service android:name=".mydb.NickyService" />
     </application>

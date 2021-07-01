@@ -79,7 +79,7 @@ public class Video extends AppCompatActivity {
         bt1.setOnClickListener(bt1A);
         bt2.setOnClickListener(bt2B);
         bt4.setOnClickListener(bt4C);
-        String result = dbpermission.executeQuery(vender);
+        String result = dbpermission.executeQuery(vender,"1234","1234");
         try{
             JSONArray jsonArray = new JSONArray(result);
 
