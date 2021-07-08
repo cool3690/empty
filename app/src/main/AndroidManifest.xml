@@ -25,7 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".Record"
+            android:label="@string/title_activity_record"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Carplacemuti2"
             android:label="@string/title_activity_carplacemuti2"
@@ -41,7 +44,7 @@
         <activity
             android:name=".Main"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Carplace"
             android:label="@string/title_activity_carplace"
@@ -81,7 +84,7 @@
         <activity
             android:name=".Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".mydb.NickyService" />
     </application>

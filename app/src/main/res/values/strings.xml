@@ -20,4 +20,5 @@
     <string name="title_activity_carplacemuti">所有車輛地點</string>
     <string name="title_activity_carplacemuti2">所有車輛</string>
     <string name="title_activity_main">登入</string>
+    <string name="title_activity_record">檔案紀錄</string>
 </resources>

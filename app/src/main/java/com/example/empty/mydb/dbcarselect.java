@@ -15,15 +15,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class dbcarname {
-    public static String executeQuery(String scar) {
+public class dbcarselect {
+    public static String executeQuery(String scar,String date,String time) {
         String result = "";
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://52.155.115.220:6061/pf/carname.php");
+            HttpPost httpPost = new HttpPost("http://52.155.115.220:6061/pf/carselect.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("scar", scar));
+            params.add(new BasicNameValuePair("date", date));
+            params.add(new BasicNameValuePair("time", time));
             //params.add(new BasicNameValuePair("passwd", passwd));
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             HttpResponse httpResponse = httpClient.execute(httpPost);

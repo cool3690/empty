@@ -116,6 +116,17 @@
             android:layout_below="@id/txt1"
             android:background="@drawable/selecter"
             android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/download"
+            android:layout_below="@id/txt1"
+         android:layout_toRightOf="@id/choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:textColor="#0A3D7A"
+            android:text="檔案下載" />
              <!-- -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
@@ -157,4 +168,6 @@
                 </LinearLayout>
 
        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 </androidx.percentlayout.widget.PercentRelativeLayout>
