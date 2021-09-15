@@ -194,31 +194,33 @@ public class Video extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date date=new Date();
             String dts=sdf.format(date);
-            dts="20210623";
+            dts="20210914";
             SimpleDateFormat t=new SimpleDateFormat("HH");
             Date date2=new Date();
             String t2=t.format(date2);
-            t2="20";
+            t2="16";
             String a= dbcarname.executeQuery(sel.trim());
             //toast(a+"");
-       //     ch1.loadUrl(web+"308-HC/20210623/19/CH2/Converted/308-HC_20210623_1900_CH2.mp4");
-
+       //     ch1.loadUrl(web+"308-HC/20210623/19/CH2/Source/308-HC_20210623_1900_CH2.mp4");
+            ch1.loadUrl(web+"308-HC/"+dts+"/"+t2+"/CH1/Source/"+"308-HC_20210914_1604_CH1.avi");
+            ch2.loadUrl(web+"308-HC/"+dts+"/"+t2+"/CH2/Source/"+"308-HC_20210914_1604_CH2.avi");
+           mytoast(web+"308-HC/"+dts+"/"+t2+"/CH1/Source/"+"308-HC_20210914_1604_CH1.avi");
             if(a!=null){
                 String b[]=a.split(":");
 
                 if(b.length>0){
                     String c[]=b[0].split(",");
                     if(x<c.length){
-                        //  mytoast(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                        //  mytoast(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Source/"+c[x]);
                         // sel.trim();
-                         ch1.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
-                        ch5.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Converted/"+c[x]);
+                         ch1.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Source/"+c[x]);
+                        ch5.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH1/Source/"+c[x]);
                     }
                 }
                 if(b.length>1) {
                     String d[] = b[1].split(",");
                     if(x<d.length){
-                        ch2.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH2/Converted/"+d[x]);
+                        ch2.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH2/Source/"+d[x]);
                         //ch2.loadUrl("https://chansing.com.tw/car/video/"+sel+"/"+dts+"/"+t2+"/CH2/"+d[x]);
                     }
                 }
@@ -226,14 +228,14 @@ public class Video extends AppCompatActivity {
                     String e[]=b[2].split(",");
                     if(x<e.length){
 
-                        ch3.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH3/Converted/"+e[x]);
+                        ch3.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH3/Source/"+e[x]);
 
                     }
                 }
                 if(b.length>3) {
                     String f[]=b[3].split(",");
                     if(x<f.length){
-                        ch4.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH4/Converted/"+f[x]);
+                        ch4.loadUrl(web+sel.trim()+"/"+dts+"/"+t2+"/CH4/Source/"+f[x]);
 
                     }
                 }

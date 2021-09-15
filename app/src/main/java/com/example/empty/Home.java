@@ -65,7 +65,7 @@ Button stamp,place,track,real,placemuti,placemuti2;
                 return false;
             }
         });
-       // real.setVisibility(View.GONE);
+
     }
 
     private Button.OnClickListener stampbtn=new Button.OnClickListener(){//打卡
