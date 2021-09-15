@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,7 +42,7 @@ public class Video extends AppCompatActivity {
     WebView ch1,ch2,ch3,ch4,ch5;
     Button bt1,bt2,bt4;
     String sel="";
-    String web="http://52.155.115.220:6061/pf/";
+    String web="https://211.23.243.112/video/";
     Timer timer = new Timer();
     String course[]= {"    233-VG","    787-VG","    289-UT","    787-VG","    AAQ-636"};
 
@@ -76,13 +77,19 @@ public class Video extends AppCompatActivity {
         bt2=(Button)findViewById(R.id.bt2);
         bt4=(Button)findViewById(R.id.bt4);
         L0=(LinearLayout)findViewById(R.id.L0);
+
         ch5=(WebView)findViewById(R.id.ch5);
+
         download=(TextView)findViewById(R.id.download);
         download.setOnClickListener(downloadbtn);
         L0.setVisibility(View.GONE);
         bt1.setOnClickListener(bt1A);
         bt2.setOnClickListener(bt2B);
-        bt4.setOnClickListener(bt4C);
+        bt4.setOnClickListener(bt4C);//https://211.23.243.112/video/787-VG/20210915/06/CH1/787-VG_20210915_0652_CH1.mp4
+
+        ch1.loadUrl("211.23.243.112/video/787-VG/20210915/06/CH1/787-VG_20210915_0652_CH1.mp4");
+        ch2.loadUrl("211.23.243.112/video/787-VG/20210915/06/CH2/787-VG_20210915_0652_CH2.mp4");
+      //  ch2.loadUrl("https://kei-sei.com/video/CH2.mp4");
         String result = dbpermission.executeQuery(vender,"1234","1234");
         try{
             JSONArray jsonArray = new JSONArray(result);
@@ -181,7 +188,7 @@ public class Video extends AppCompatActivity {
                      ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
                     x=0;
                     sel=parent.getSelectedItem().toString();
-                  show(sel);
+                 // show(sel);
 
                 }
                 @Override
@@ -201,10 +208,10 @@ public class Video extends AppCompatActivity {
             t2="16";
             String a= dbcarname.executeQuery(sel.trim());
             //toast(a+"");
-       //     ch1.loadUrl(web+"308-HC/20210623/19/CH2/Source/308-HC_20210623_1900_CH2.mp4");
-            ch1.loadUrl(web+"308-HC/"+dts+"/"+t2+"/CH1/Source/"+"308-HC_20210914_1604_CH1.avi");
-            ch2.loadUrl(web+"308-HC/"+dts+"/"+t2+"/CH2/Source/"+"308-HC_20210914_1604_CH2.avi");
-           mytoast(web+"308-HC/"+dts+"/"+t2+"/CH1/Source/"+"308-HC_20210914_1604_CH1.avi");
+
+           // ch1.loadUrl("https://211.23.243.112/video/787-VG/20210915/06/CH1/787-VG_20210915_0647_CH1.mp4");
+           // ch2.loadUrl("https://211.23.243.112/video/787-VG/20210915/06/CH2/787-VG_20210915_0647_CH2.mp4");
+           //mytoast(web+"308-HC/"+dts+"/"+t2+"/CH1/Source/"+"308-HC_20210914_1604_CH1.avi");
             if(a!=null){
                 String b[]=a.split(":");
 

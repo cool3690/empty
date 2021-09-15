@@ -63,8 +63,6 @@ public class Cartrack extends AppCompatActivity {
 
         myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php");
 
-       // myweb.scrollTo(0,800);
-      //  back.setOnClickListener(backbtn);
         BottomNavigationView nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.path);
         nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,11 +102,9 @@ public class Cartrack extends AppCompatActivity {
         @Override
         public void onItemSelected(AdapterView<?> parent, View v,
                                    int position, long id) {
-            int tmp=position+1;
-            myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php?num="+position);
-
-            //  myweb.scrollTo(0,1400);
-            //  sel=parent.getSelectedItem().toString();
+            String sel=parent.getSelectedItem().toString();
+            sel=sel.replaceAll("\\s","");
+            myweb.loadUrl("http://vehicle.chansing.com.tw/car/track1.php?num="+sel);
 
         }
         @Override
