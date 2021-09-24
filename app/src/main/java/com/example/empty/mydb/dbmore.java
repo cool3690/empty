@@ -7,7 +7,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
 import java.io.BufferedReader;
@@ -15,22 +14,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class dbcarname {
-    public static String executeQuery(String scar) {
+public class dbmore {
+    public static String executeQuery(String sel) {
         String result = "";
-
-        try {
-            HttpClient httpClient = new DefaultHttpClient();//https://211.23.243.112/video/carname.php
-            HttpPost httpPost = new HttpPost("https://vehicle.chansing.com.tw/car/carname.php");
+       
+        try {   
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://vehicle.chansing.com.tw/car/car_info.php?num="+sel);
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("scar", scar));
-            //params.add(new BasicNameValuePair("passwd", passwd));
+            //params.add(new BasicNameValuePair("id", id));
+
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             HttpResponse httpResponse = httpClient.execute(httpPost);
             //view_account.setText(httpResponse.getStatusLine().toString());
             HttpEntity httpEntity = httpResponse.getEntity();
             InputStream inputStream = httpEntity.getContent();
-
+            
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"), 8);
             StringBuilder builder = new StringBuilder();
             String line = null;
@@ -42,7 +41,7 @@ public class dbcarname {
         } catch(Exception e) {
             // Log.e("log_tag", e.toString());
         }
-
+        
         return result;
     }
 }

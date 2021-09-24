@@ -40,7 +40,7 @@ public class Record extends AppCompatActivity {
     Spinner spncar,spndate,spntime;
     ListView listshow;
     String vender="";
-    String web="http://52.155.115.220:6061/pf/";
+    String web="https://vehicle.chansing.com.tw/car/";
     String selA="308-HC",selB="20210705",selC="09";
     String course[]= {"    233-VG","    787-VG","    289-UT","    787-VG","    AAQ-636"};
     String day[]={"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -220,13 +220,14 @@ public class Record extends AppCompatActivity {
                     else if(data.get(position).contains("CH4")){tmp="CH4";}
 
                     startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(web+selA+"/"+selB+"/"+selC+"/"+tmp+"/Source/"+data.get(position))));
+                            Uri.parse(web+selA+"/"+selB+"/"+selC+"/"+tmp+"/"+data.get(position))));
                    // mytoast(data.get(position));
                 }
             };
     public void find_connect(){
         try {
             URL url = new URL(web+selA+"/"+selB+"/"+selC);
+           // mytoast(web+selA+"/"+selB+"/"+selC);
          //   mytoast(web+selA+"/"+selB+"/"+selC);
             HttpURLConnection connection = null;
             connection = (HttpURLConnection) url.openConnection();

@@ -20,8 +20,8 @@ public class dbcarselect {
         String result = "";
 
         try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://52.155.115.220:6061/pf/carselect.php");
+            HttpClient httpClient = new DefaultHttpClient();//https://211.23.243.112/video/carname.php
+            HttpPost httpPost = new HttpPost("https://vehicle.chansing.com.tw/car/carselect.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("scar", scar));
             params.add(new BasicNameValuePair("date", date));
