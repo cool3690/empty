@@ -144,6 +144,13 @@ public class Carplace extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                        /*
+                    case R.id.reply:
+                        startActivity(new Intent(getApplicationContext(),Home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                         */
                 }
                 return false;
             }
@@ -205,7 +212,7 @@ public class Carplace extends AppCompatActivity {
                 lp.y = 20;
 
                 lp.width = 600;
-                lp.height = 900;
+
 
                 dia.show();
                 dia.onWindowAttributesChanged(lp);

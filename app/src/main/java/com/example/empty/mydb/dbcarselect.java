@@ -21,7 +21,7 @@ public class dbcarselect {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();//https://211.23.243.112/video/carname.php
-            HttpPost httpPost = new HttpPost("https://vehicle.chansing.com.tw/car/carselect.php");
+            HttpPost httpPost = new HttpPost("https://converted.myftp.org/video/carselect.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("scar", scar));
             params.add(new BasicNameValuePair("date", date));

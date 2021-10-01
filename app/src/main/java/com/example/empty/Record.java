@@ -40,7 +40,7 @@ public class Record extends AppCompatActivity {
     Spinner spncar,spndate,spntime;
     ListView listshow;
     String vender="";
-    String web="https://vehicle.chansing.com.tw/car/";
+    String web="https://converted.myftp.org/video/";
     String selA="308-HC",selB="20210705",selC="09";
     String course[]= {"    233-VG","    787-VG","    289-UT","    787-VG","    AAQ-636"};
     String day[]={"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
@@ -227,41 +227,41 @@ public class Record extends AppCompatActivity {
     public void find_connect(){
         try {
             URL url = new URL(web+selA+"/"+selB+"/"+selC);
-           // mytoast(web+selA+"/"+selB+"/"+selC);
+
          //   mytoast(web+selA+"/"+selB+"/"+selC);
             HttpURLConnection connection = null;
             connection = (HttpURLConnection) url.openConnection();
             int code = connection.getResponseCode();
             String result = dbcarselect.executeQuery(selA,selB,selC);
-
+            //mytoast(result);
             if(code == 200) {
                 teams.clear();
                 data.clear();
                 String sel_channel[]=result.split(":");
                // mytoast(sel_channel[0]);
                 String sel_ch1[]=sel_channel[0].split(",");
-                for(int i=0;i<sel_ch1.length-1;i++){
+                for(int i=0;i<sel_ch1.length;i++){
 
                     Team  team = new Team(sel_ch1[i]);
                     teams.add(team);
                     data.add(sel_ch1[i]);
                 }
                 String sel_ch2[]=sel_channel[1].split(",");
-                for(int i=0;i<sel_ch2.length-1;i++){
+                for(int i=0;i<sel_ch2.length;i++){
 
                     Team  team = new Team(sel_ch2[i]);
                     teams.add(team);
                     data.add(sel_ch2[i]);
                 }
                 String sel_ch3[]=sel_channel[2].split(",");
-                for(int i=0;i<sel_ch3.length-1;i++){
+                for(int i=0;i<sel_ch3.length;i++){
 
                     Team  team = new Team(sel_ch3[i]);
                     teams.add(team);
                     data.add(sel_ch3[i]);
                 }
                 String sel_ch4[]=sel_channel[3].split(",");
-                for(int i=0;i<sel_ch4.length-1;i++){
+                for(int i=0;i<sel_ch4.length;i++){
 
                     Team  team = new Team(sel_ch4[i]);
                     teams.add(team);

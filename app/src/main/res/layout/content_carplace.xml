@@ -87,6 +87,7 @@
         android:layout_alignParentBottom="true"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@drawable/bottom_navigation_selector"
+
         app:itemIconPadding="@dimen/design_bottom_navigation_height"
         app:menu="@menu/bottom_nav_menu" >
 

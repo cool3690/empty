@@ -8,39 +8,58 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
-Button stamp,place,track,real,placemuti,placemuti2;
-
+    TextView create_date,status,person;
+    EditText topic,question,answer;
+    Spinner spinner;
+    String[]choose={"面談","手寫"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        stamp=(Button)findViewById(R.id.stamp);
-        place=(Button)findViewById(R.id.place);
-        track=(Button)findViewById(R.id.track);
-        real=(Button)findViewById(R.id.real);
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads()
+                .detectDiskWrites()
+                .detectNetwork()
+                .penaltyLog()
+                .build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build());
+        create_date=(TextView)findViewById(R.id.create_date);
+        status=(TextView)findViewById(R.id.status);
+        person=(TextView)findViewById(R.id.person);
+        topic=(EditText)findViewById(R.id.topic);
+        question=(EditText)findViewById(R.id.question);
+        answer=(EditText)findViewById(R.id.answer);
+        spinner=(Spinner)findViewById(R.id.spinner);
 
-        placemuti=(Button)findViewById(R.id.placemuti);
-        placemuti2=(Button)findViewById(R.id.placemuti2);
-        stamp.setOnClickListener(stampbtn);
-        place.setOnClickListener(placebtn);
-        track.setOnClickListener(trackbtn);
-        real.setOnClickListener(realbtn);
-        placemuti.setOnClickListener(placemutibtn);
-        placemuti2.setOnClickListener(placemuti2btn);
+////dayspn
+        ArrayAdapter<String> choosedayspn=new ArrayAdapter<String>(this,android.R.layout.
+                simple_spinner_dropdown_item,choose);
+
+        spinner.setAdapter(choosedayspn);
+        spinner.setOnItemSelectedListener(spinnerbtn);
         BottomNavigationView   nav_view=(BottomNavigationView)findViewById(R.id.nav_view);
         nav_view.setSelectedItemId(R.id.location);
-
         nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -67,79 +86,18 @@ Button stamp,place,track,real,placemuti,placemuti2;
         });
 
     }
+    private Spinner.OnItemSelectedListener spinnerbtn=
+            new Spinner.OnItemSelectedListener(){
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View v,
+                                           int position, long id) {
+                   String selC=parent.getSelectedItem().toString();
 
-    private Button.OnClickListener stampbtn=new Button.OnClickListener(){//打卡
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, MainActivity.class);
-            startActivity(intent);
-        }
-    };
-    private Button.OnClickListener placebtn=new Button.OnClickListener(){//定位
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, Carplace.class);
-            startActivity(intent);
-        }
-    };
-    private Button.OnClickListener trackbtn=new Button.OnClickListener(){//軌跡
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, Cartrack.class);
-            startActivity(intent);
-        }
-    };
-    private Button.OnClickListener realbtn=new Button.OnClickListener(){//即時影像
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, Video.class);
-            startActivity(intent);
-        }
-    };
-    private Button.OnClickListener placemutibtn=new Button.OnClickListener(){//打卡
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, Carplacemuti.class);
-            startActivity(intent);
-        }
-    };
-    private Button.OnClickListener placemuti2btn=new Button.OnClickListener(){//打卡
-        @Override
-        public void onClick(View v) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, Carplacemuti2.class);
-            startActivity(intent);
-        }
-    };
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.location) {
-
-            return true;
-        }
-        else if (id == R.id.path) {
-            Intent intent=new Intent();
-            intent.setClass(Home.this, MainActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-     */
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // TODO Auto-generated method stub
+                }
+            };
 
 }

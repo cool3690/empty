@@ -5,62 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <Button
-            android:id="@+id/stamp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/create_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="打卡" />
-
-        <Button
-            android:id="@+id/place"
-            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="填單日期:2021-09-24" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:text="車輛地點(單點)" />
-
-        <Button
-            android:id="@+id/placemuti"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight=".2"
+            android:text="主題: " />
+        <EditText
+            android:id="@+id/topic"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:text="所有車輛地點" />
-
-        <Button
-            android:id="@+id/placemuti2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:text="所有車輛地點(指定)" />
-
-        <Button
-            android:id="@+id/track"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:text="車輛軌跡" />
-
-        <Button
-            android:id="@+id/real"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:text="即時影像" />
-
+            android:ems="10"
+            android:layout_weight=".8"
+            android:inputType="text"
+            android:hint="意見主題" />
     </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight=".5"
+                android:text="狀態: " />
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="意見說明"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="意見回應"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="處理人員:XXX" />
+    </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -72,4 +97,8 @@
         android:layout_alignParentBottom="true"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:menu="@menu/bottom_nav_menu" />
+
+
+
+
 </RelativeLayout>

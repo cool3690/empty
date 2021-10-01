@@ -21,7 +21,7 @@ public class dbc1 {
        
         try { 
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("https://demo.chansing.com.tw/GPS/record.php");
+            HttpPost httpPost = new HttpPost("http://vehicle.chansing.com.tw/car/record.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("car", car));
             params.add(new BasicNameValuePair("date", date));

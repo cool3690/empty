@@ -18,17 +18,17 @@
             android:id="@+id/spncar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight=".375"/>
         <Spinner
             android:id="@+id/spndate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight=".375"/>
         <Spinner
             android:id="@+id/spntime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight=".25"/>
     </LinearLayout>
 <ListView
     android:id="@+id/listshow"

@@ -43,7 +43,7 @@ public class Video extends AppCompatActivity {
     WebView ch1,ch2,ch3,ch4,ch5;
     Button bt1,bt2,bt4;
     String sel="";
-    String web="https://vehicle.chansing.com.tw/car/";//https://211.23.243.112/video/
+    String web="https://converted.myftp.org/video/";//https://211.23.243.112/video/
     Timer timer = new Timer();
     String course[]= {"    233-VG","    787-VG","    289-UT","    787-VG","    AAQ-636"};
 
@@ -205,11 +205,11 @@ public class Video extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             Date date=new Date();
             String dts=sdf.format(date);
-           // dts="20210922";
+          // dts="20210922";
             SimpleDateFormat t=new SimpleDateFormat("HH");
             Date date2=new Date();
             String t2=t.format(date2);
-            t2="08";
+            t2="13";
             sel="233-VG";
             String a= dbcarname.executeQuery(sel);
 
