@@ -21,7 +21,7 @@ public class dbplace {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://vehicle.chansing.com.tw/car/map1.phpp");
+            HttpPost httpPost = new HttpPost("http://vehicle.chansing.com.tw/car/map1.php");
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("num", num));
             //params.add(new BasicNameValuePair("passwd", passwd));

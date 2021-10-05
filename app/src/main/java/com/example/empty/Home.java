@@ -24,9 +24,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
     TextView create_date,status,person;
-    EditText topic,question,answer;
-    Spinner spinner;
+    EditText topic,question ;
+    Spinner spinner,problem_spn;
     String[]choose={"面談","手寫"};
+    String[]problem={"面談","手寫"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,13 @@ public class Home extends AppCompatActivity {
         person=(TextView)findViewById(R.id.person);
         topic=(EditText)findViewById(R.id.topic);
         question=(EditText)findViewById(R.id.question);
-        answer=(EditText)findViewById(R.id.answer);
+        problem_spn=(Spinner)findViewById(R.id.problem_spn);
         spinner=(Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<String> probspn=new ArrayAdapter<String>(this,android.R.layout.
+                simple_spinner_dropdown_item,problem);
 
+        spinner.setAdapter(probspn);
+        spinner.setOnItemSelectedListener(prospn);
 ////dayspn
         ArrayAdapter<String> choosedayspn=new ArrayAdapter<String>(this,android.R.layout.
                 simple_spinner_dropdown_item,choose);
@@ -99,5 +104,17 @@ public class Home extends AppCompatActivity {
                     // TODO Auto-generated method stub
                 }
             };
+    private Spinner.OnItemSelectedListener prospn=
+            new Spinner.OnItemSelectedListener(){
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View v,
+                                           int position, long id) {
+                    String selC=parent.getSelectedItem().toString();
 
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // TODO Auto-generated method stub
+                }
+            };
 }
